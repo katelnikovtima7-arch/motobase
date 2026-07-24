@@ -11,9 +11,13 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
+        html {
             height: 100%;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100%;
             overflow-x: hidden;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -21,20 +25,17 @@
             user-select: none;
             -webkit-touch-callout: none;
             -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
             background: black;
-        }
-
-        .section {
-            min-height: 100vh;
-            width: 100vw;
             background-image: url('IMG_1446.png');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -98,11 +99,12 @@
 
         .category-buttons {
             display: none;
-            gap: 12px;
+            gap: 20px;
             margin-top: 20px;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            width: 100%;
+            max-width: 500px;
         }
 
         .category-buttons.show {
@@ -110,7 +112,8 @@
         }
 
         .cat-btn {
-            padding: 12px 24px;
+            flex: 1;
+            padding: 12px 0;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -123,6 +126,7 @@
             -webkit-user-select: none;
             user-select: none;
             transition: background 0.2s;
+            text-align: center;
         }
 
         .cat-btn.active {
@@ -134,8 +138,9 @@
             display: flex;
             gap: 20px;
             margin-top: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
         }
 
         .model-list {
@@ -144,8 +149,8 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
-            padding: 18px 24px;
-            min-width: 140px;
+            padding: 18px 20px;
+            flex: 1;
             text-align: left;
         }
 
