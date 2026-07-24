@@ -26,17 +26,19 @@
             background: black;
         }
 
+        /* ФОН — отдельный слой, намертво зафиксирован */
         .bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background-image: url('IMG_1446.png');
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             background-repeat: no-repeat;
             z-index: 0;
+            pointer-events: none;
         }
 
         .content {
@@ -97,22 +99,33 @@
             box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
         }
 
-        .category-row {
+        .category-wrapper {
             display: none;
-            gap: 20px;
             margin-top: 25px;
-            justify-content: center;
-            align-items: center;
             width: 100%;
             max-width: 500px;
         }
 
-        .category-row.show {
+        .category-wrapper.show {
+            display: block;
+        }
+
+        .category-row {
             display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cat-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .cat-btn {
-            flex: 1;
+            width: 100%;
             padding: 12px 0;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
@@ -132,23 +145,15 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .lists-row {
-            display: flex;
-            gap: 20px;
-            margin-top: 15px;
-            justify-content: center;
-            width: 100%;
-            max-width: 500px;
-        }
-
         .model-list {
             display: none;
-            background: rgba(0, 0, 0, 0.4);
+            width: 100%;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 18px 20px;
-            flex: 1;
             text-align: left;
         }
 
@@ -188,42 +193,52 @@
             
             <a class="btn" onclick="showCategories()">Выберите модель</a>
 
-            <div class="category-row" id="categoryRow">
-                <button class="cat-btn" onclick="toggleList('mopeds', this)">Мопеды</button>
-                <button class="cat-btn" onclick="toggleList('scooters', this)">Скутеры</button>
-                <button class="cat-btn" onclick="toggleList('pitbikes', this)">Питбайки</button>
-            </div>
+            <div class="category-wrapper" id="categoryWrapper">
+                <div class="category-row">
 
-            <div class="lists-row">
-                <div class="model-list" id="mopeds">
-                    <ul>
-                        <li>Alpha</li>
-                        <li>Delta</li>
-                        <li>Orion</li>
-                        <li>Racer</li>
-                        <li>Regulmoto</li>
-                        <li>Minsk</li>
-                    </ul>
-                </div>
+                    <!-- МОПЕДЫ -->
+                    <div class="cat-block">
+                        <button class="cat-btn" onclick="toggleList('mopeds', this)">Мопеды</button>
+                        <div class="model-list" id="mopeds">
+                            <ul>
+                                <li>Alpha</li>
+                                <li>Delta</li>
+                                <li>Orion</li>
+                                <li>Racer</li>
+                                <li>Regulmoto</li>
+                                <li>Minsk</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                <div class="model-list" id="scooters">
-                    <ul>
-                        <li>Honda Dio</li>
-                        <li>Honda Tact</li>
-                        <li>Yamaha Jog</li>
-                        <li>Suzuki Let's</li>
-                        <li>Yamaha Aerox</li>
-                    </ul>
-                </div>
+                    <!-- СКУТЕРЫ -->
+                    <div class="cat-block">
+                        <button class="cat-btn" onclick="toggleList('scooters', this)">Скутеры</button>
+                        <div class="model-list" id="scooters">
+                            <ul>
+                                <li>Honda Dio</li>
+                                <li>Honda Tact</li>
+                                <li>Yamaha Jog</li>
+                                <li>Suzuki Let's</li>
+                                <li>Yamaha Aerox</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                <div class="model-list" id="pitbikes">
-                    <ul>
-                        <li>Kayo</li>
-                        <li>BSE</li>
-                        <li>Motoland</li>
-                        <li>Irbis</li>
-                        <li>Progasi</li>
-                    </ul>
+                    <!-- ПИТБАЙКИ -->
+                    <div class="cat-block">
+                        <button class="cat-btn" onclick="toggleList('pitbikes', this)">Питбайки</button>
+                        <div class="model-list" id="pitbikes">
+                            <ul>
+                                <li>Kayo</li>
+                                <li>BSE</li>
+                                <li>Motoland</li>
+                                <li>Irbis</li>
+                                <li>Progasi</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -242,7 +257,7 @@
 
     <script>
         function showCategories() {
-            document.getElementById('categoryRow').classList.add('show');
+            document.getElementById('categoryWrapper').classList.add('show');
         }
 
         function toggleList(id, btn) {
