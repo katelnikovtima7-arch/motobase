@@ -74,6 +74,91 @@
             -webkit-user-select: none;
             user-select: none;
         }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 16px 40px;
+            background: #ff6b00;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            -webkit-user-select: none;
+            user-select: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            cursor: pointer;
+        }
+
+        .category-buttons {
+            display: none;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-buttons.show {
+            display: flex;
+        }
+
+        .cat-btn {
+            padding: 14px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .cat-btn.active {
+            background: #ff6b00;
+            border-color: #ff6b00;
+        }
+
+        .models-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .model-list {
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px 30px;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .model-list.show {
+            display: block;
+        }
+
+        .model-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .model-list li {
+            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .model-list li:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
@@ -84,18 +169,75 @@
         <p class="welcome-text">Здесь вы найдете технические характеристики популярных моделей, инструкции по ремонту и обслуживанию, полезные калькуляторы, советы, руководства и другую важную информацию, собранную в одном месте.</p>
         <p class="scroll-hint">↓</p>
         <p class="welcome-text">Прокрутите страницу вниз, чтобы начать пользоваться сайтом.</p>
+        
+        <a class="btn" onclick="showCategories()">Выберите модель</a>
+
+        <div class="category-buttons" id="categoryButtons">
+            <button class="cat-btn" onclick="toggleList('mopeds', this)">🛠️ Мопеды</button>
+            <button class="cat-btn" onclick="toggleList('scooters', this)">🛵 Скутеры</button>
+            <button class="cat-btn" onclick="toggleList('pitbikes', this)">🏁 Питбайки</button>
+        </div>
+
+        <div class="models-container">
+            <div class="model-list" id="mopeds">
+                <ul>
+                    <li>Alpha</li>
+                    <li>Delta</li>
+                    <li>Orion</li>
+                    <li>Racer</li>
+                    <li>Regulmoto</li>
+                    <li>Minsk</li>
+                </ul>
+            </div>
+
+            <div class="model-list" id="scooters">
+                <ul>
+                    <li>Honda Dio</li>
+                    <li>Honda Tact</li>
+                    <li>Yamaha Jog</li>
+                    <li>Suzuki Let's</li>
+                    <li>Yamaha Aerox</li>
+                </ul>
+            </div>
+
+            <div class="model-list" id="pitbikes">
+                <ul>
+                    <li>Kayo</li>
+                    <li>BSE</li>
+                    <li>Motoland</li>
+                    <li>Irbis</li>
+                    <li>Progasi</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section class="section">
         <h1>Вторая секция</h1>
         <p>Тут твой текст.</p>
-        <p class="scroll-hint">↓</p>
     </section>
 
     <section class="section">
         <h1>Третья секция</h1>
         <p>Ты долистал!</p>
     </section>
+
+    <script>
+        function showCategories() {
+            document.getElementById('categoryButtons').classList.add('show');
+        }
+
+        function toggleList(id, btn) {
+            var list = document.getElementById(id);
+            if (list.classList.contains('show')) {
+                list.classList.remove('show');
+                btn.classList.remove('active');
+            } else {
+                list.classList.add('show');
+                btn.classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
