@@ -217,12 +217,17 @@
         }
 
         .info-text {
+            display: none;
             margin-top: 25px;
             font-size: 0.95rem;
             text-shadow: 0 1px 6px black;
             max-width: 500px;
             line-height: 1.5;
             opacity: 0.85;
+        }
+
+        .info-text.show {
+            display: block;
         }
     </style>
 </head>
@@ -289,7 +294,7 @@
                 </div>
             </div>
 
-            <p class="info-text">Не нашли свою модель? Скорее всего, она похожа на одну из представленных. Выберите наиболее подходящую.</p>
+            <p class="info-text" id="infoText">Не нашли свою модель? Скорее всего, она похожа на одну из представленных. Выберите наиболее подходящую.</p>
         </section>
 
         <section class="section">
@@ -308,16 +313,20 @@
         function showCategories() {
             var wrapper = document.getElementById('categoryWrapper');
             var btn = document.getElementById('mainBtn');
+            var info = document.getElementById('infoText');
 
             if (btn.classList.contains('selected')) {
                 btn.classList.remove('selected');
                 btn.textContent = 'Выберите модель';
+                info.classList.remove('show');
             }
 
             if (wrapper.classList.contains('show')) {
                 wrapper.classList.remove('show');
+                info.classList.remove('show');
             } else {
                 wrapper.classList.add('show');
+                info.classList.add('show');
             }
         }
 
@@ -335,6 +344,7 @@
         function selectModel(modelName) {
             var btn = document.getElementById('mainBtn');
             var wrapper = document.getElementById('categoryWrapper');
+            var info = document.getElementById('infoText');
 
             var allLists = document.querySelectorAll('.model-list');
             allLists.forEach(function(list) {
@@ -347,6 +357,7 @@
             });
 
             wrapper.classList.remove('show');
+            info.classList.remove('show');
 
             btn.textContent = modelName;
             btn.classList.add('selected');
