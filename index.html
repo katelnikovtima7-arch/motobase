@@ -250,7 +250,6 @@
             display: block;
         }
 
-        /* Секция с кнопками действий */
         .actions-section {
             display: none;
             flex-direction: column;
@@ -305,7 +304,6 @@
 
     <div class="content">
 
-        <!-- ПЕРВАЯ СЕКЦИЯ -->
         <section class="section" id="firstSection">
             <h1>Добро пожаловать!</h1>
             <p>Этот сайт создан для владельцев мопедов, питбайков, мотоциклов и другой мототехники.</p>
@@ -367,22 +365,19 @@
             <p class="info-text" id="infoText">Не нашли свою модель? Скорее всего, она похожа на одну из представленных. Выберите наиболее подходящую.</p>
         </section>
 
-        <!-- ВТОРАЯ СЕКЦИЯ -->
         <section class="section" id="secondSection">
             <h1>Вторая секция</h1>
             <p>Тут твой текст.</p>
         </section>
 
-        <!-- СЕКЦИЯ С КНОПКАМИ ДЕЙСТВИЙ -->
         <section class="actions-section" id="actionsSection">
             <p class="actions-title">Что вас интересует?</p>
-            <button class="action-btn">Обслуживание</button>
-            <button class="action-btn">Ремонт</button>
-            <button class="action-btn">Информация</button>
-            <button class="action-btn">Электрика</button>
+            <button class="action-btn" onclick="alert('Обслуживание')">Обслуживание</button>
+            <button class="action-btn" onclick="alert('Ремонт')">Ремонт</button>
+            <button class="action-btn" onclick="alert('Информация')">Информация</button>
+            <button class="action-btn" onclick="alert('Электрика')">Электрика</button>
         </section>
 
-        <!-- ТРЕТЬЯ СЕКЦИЯ -->
         <section class="section" id="thirdSection">
             <h1>Третья секция</h1>
             <p>Ты долистал!</p>
