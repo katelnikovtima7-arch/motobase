@@ -91,7 +91,7 @@
 
         /* Увеличенный отступ перед кнопкой */
         .btn-wrapper {
-            margin-top: 80px;
+            margin-top: 200px;
         }
 
         .btn {
@@ -239,7 +239,6 @@
             <div class="category-wrapper" id="categoryWrapper">
                 <div class="category-row">
 
-                    <!-- МОПЕДЫ -->
                     <div class="cat-block">
                         <button class="cat-btn" onclick="toggleList('mopeds', this)">Мопеды</button>
                         <div class="model-list" id="mopeds">
@@ -254,7 +253,6 @@
                         </div>
                     </div>
 
-                    <!-- СКУТЕРЫ -->
                     <div class="cat-block">
                         <button class="cat-btn" onclick="toggleList('scooters', this)">Скутеры</button>
                         <div class="model-list" id="scooters">
@@ -268,7 +266,6 @@
                         </div>
                     </div>
 
-                    <!-- ПИТБАЙКИ -->
                     <div class="cat-block">
                         <button class="cat-btn" onclick="toggleList('pitbikes', this)">Питбайки</button>
                         <div class="model-list" id="pitbikes">
@@ -303,7 +300,6 @@
             var wrapper = document.getElementById('categoryWrapper');
             var btn = document.getElementById('mainBtn');
 
-            // Если уже выбрана модель — сбрасываем
             if (btn.classList.contains('selected')) {
                 btn.classList.remove('selected');
                 btn.textContent = 'Выберите модель';
@@ -331,22 +327,18 @@
             var btn = document.getElementById('mainBtn');
             var wrapper = document.getElementById('categoryWrapper');
 
-            // Закрываем все списки
             var allLists = document.querySelectorAll('.model-list');
             allLists.forEach(function(list) {
                 list.classList.remove('show');
             });
 
-            // Убираем активность со всех кнопок категорий
             var allCatBtns = document.querySelectorAll('.cat-btn');
             allCatBtns.forEach(function(catBtn) {
                 catBtn.classList.remove('active');
             });
 
-            // Скрываем обёртку с категориями
             wrapper.classList.remove('show');
 
-            // Меняем кнопку
             btn.textContent = modelName;
             btn.classList.add('selected');
         }
