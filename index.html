@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>МотоСправочник</title>
+    <title>Мой сайт</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,6 @@
         html {
             touch-action: pan-x pan-y;
             -ms-touch-action: pan-x pan-y;
-            scroll-behavior: smooth;
         }
 
         html, body {
@@ -29,8 +28,7 @@
         }
 
         body {
-            background: #0a0a0a;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: black;
         }
 
         .bg {
@@ -43,17 +41,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.35);
             z-index: 0;
             pointer-events: none;
         }
@@ -73,41 +60,33 @@
             text-align: center;
             padding: 80px 20px 40px;
             color: white;
+            font-family: sans-serif;
         }
 
         .section h1 {
             font-size: 2.5rem;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            text-shadow: 0 2px 10px black;
             margin-bottom: 20px;
-            letter-spacing: 0.5px;
         }
 
         .section p {
             font-size: 1.1rem;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+            text-shadow: 0 1px 6px black;
             max-width: 600px;
             margin-bottom: 15px;
-            line-height: 1.7;
-            opacity: 0.95;
+            line-height: 1.6;
         }
 
         .section .welcome-text {
             font-size: 1rem;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+            text-shadow: 0 1px 6px black;
             max-width: 600px;
-            line-height: 1.7;
-            opacity: 0.9;
+            line-height: 1.6;
         }
 
         .scroll-hint {
             margin-top: 30px;
             font-size: 2rem;
-            animation: floatDown 2s ease-in-out infinite;
-        }
-
-        @keyframes floatDown {
-            0%, 100% { transform: translateY(0); opacity: 0.7; }
-            50% { transform: translateY(15px); opacity: 1; }
         }
 
         .btn-wrapper {
@@ -117,40 +96,34 @@
             align-items: center;
         }
 
-        .btn-main {
+        .btn {
             display: inline-block;
-            padding: 18px 48px;
-            background: linear-gradient(135deg, #ff6b00, #e55d00);
+            padding: 16px 40px;
+            background: #ff6b00;
             color: white;
             font-size: 1.2rem;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255,107,0,0.35);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
             transition: all 0.3s ease;
             text-decoration: none;
-            min-width: 220px;
+            min-width: 200px;
             text-align: center;
-            letter-spacing: 0.5px;
         }
 
-        .btn-main:active {
-            transform: scale(0.96);
-            box-shadow: 0 4px 12px rgba(255,107,0,0.3);
-        }
-
-        .btn-main.selected {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            box-shadow: 0 8px 25px rgba(46,204,113,0.35);
+        .btn.selected {
+            background: #4caf50;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
         }
 
         .arrow-down {
             display: none;
             font-size: 2rem;
-            margin-top: 12px;
-            animation: bounce 1.5s ease-in-out infinite;
-            opacity: 0.85;
+            margin-top: 10px;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
         }
 
         .arrow-down.show {
@@ -159,29 +132,23 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(14px); }
+            50% { transform: translateY(12px); }
         }
 
         .category-wrapper {
             display: none;
-            margin-top: 30px;
+            margin-top: 25px;
             width: 100%;
-            max-width: 520px;
+            max-width: 500px;
         }
 
         .category-wrapper.show {
             display: block;
-            animation: fadeSlideIn 0.3s ease;
-        }
-
-        @keyframes fadeSlideIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .category-row {
             display: flex;
-            gap: 18px;
+            gap: 20px;
             align-items: flex-start;
         }
 
@@ -195,49 +162,40 @@
 
         .cat-btn {
             width: 100%;
-            padding: 14px 0;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: white;
             font-size: 1rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: background 0.2s;
             text-align: center;
             white-space: nowrap;
-            letter-spacing: 0.3px;
-        }
-
-        .cat-btn:hover {
-            background: rgba(255,255,255,0.15);
         }
 
         .cat-btn.active {
-            background: rgba(255,255,255,0.22);
-            border-color: rgba(255,255,255,0.45);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .model-list {
             display: none;
             width: 100%;
             margin-top: 10px;
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
-            padding: 6px 0;
+            padding: 0;
             text-align: left;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
         .model-list.show {
             display: block;
-            animation: fadeSlideIn 0.25s ease;
         }
 
         .model-list ul {
@@ -246,10 +204,20 @@
             margin: 0;
         }
 
+        .model-list li {
+            padding: 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .model-list li:last-child {
+            border-bottom: none;
+        }
+
         .model-list li button {
             display: block;
             width: 100%;
-            padding: 14px 22px;
+            padding: 12px 20px;
             background: none;
             border: none;
             color: white;
@@ -257,41 +225,87 @@
             font-size: 0.95rem;
             cursor: pointer;
             transition: background 0.2s;
-            font-family: inherit;
-            letter-spacing: 0.3px;
+            font-family: sans-serif;
         }
 
         .model-list li button:active {
-            background: rgba(255,107,0,0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         #mopeds, #pitbikes {
-            min-height: 270px;
+            min-height: 255px;
         }
 
         .info-text {
             display: none;
-            margin-top: 30px;
+            margin-top: 25px;
             font-size: 0.95rem;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+            text-shadow: 0 1px 6px black;
             max-width: 500px;
-            line-height: 1.6;
+            line-height: 1.5;
             opacity: 0.85;
         }
 
         .info-text.show {
             display: block;
-            animation: fadeSlideIn 0.4s ease;
+        }
+
+        /* Секция с кнопками действий */
+        .actions-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px 40px;
+        }
+
+        .actions-section.show {
+            display: flex;
+        }
+
+        .actions-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 2px 10px black;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            width: 100%;
+            max-width: 500px;
+            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: center;
+            font-family: sans-serif;
+            margin-bottom: 12px;
+        }
+
+        .action-btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-btn:active {
+            background: rgba(255, 255, 255, 0.25);
         }
     </style>
 </head>
 <body>
 
     <div class="bg"></div>
-    <div class="bg-overlay"></div>
 
     <div class="content">
 
+        <!-- ПЕРВАЯ СЕКЦИЯ -->
         <section class="section" id="firstSection">
             <h1>Добро пожаловать!</h1>
             <p>Этот сайт создан для владельцев мопедов, питбайков, мотоциклов и другой мототехники.</p>
@@ -300,7 +314,7 @@
             <p class="welcome-text">Прокрутите страницу вниз, чтобы начать пользоваться сайтом.</p>
             
             <div class="btn-wrapper">
-                <a class="btn-main" id="mainBtn" onclick="showCategories()">Выберите модель</a>
+                <a class="btn" id="mainBtn" onclick="showCategories()">Выберите модель</a>
                 <div class="arrow-down" id="arrowDown">↓</div>
             </div>
 
@@ -353,232 +367,30 @@
             <p class="info-text" id="infoText">Не нашли свою модель? Скорее всего, она похожа на одну из представленных. Выберите наиболее подходящую.</p>
         </section>
 
+        <!-- ВТОРАЯ СЕКЦИЯ -->
         <section class="section" id="secondSection">
             <h1>Вторая секция</h1>
             <p>Тут твой текст.</p>
         </section>
-                <section class="actions-section" id="actionsSection">
+
+        <!-- СЕКЦИЯ С КНОПКАМИ ДЕЙСТВИЙ -->
+        <section class="actions-section" id="actionsSection">
             <p class="actions-title">Что вас интересует?</p>
-            <button class="action-btn" onclick="showService()">🔧 Обслуживание</button>
-            <button class="action-btn" onclick="showRepair()">🔩 Ремонт</button>
-            <button class="action-btn" onclick="showInfo()">📋 Информация</button>
-            <button class="action-btn" onclick="showElectric()">⚡ Электрика</button>
+            <button class="action-btn">Обслуживание</button>
+            <button class="action-btn">Ремонт</button>
+            <button class="action-btn">Информация</button>
+            <button class="action-btn">Электрика</button>
         </section>
 
-        <!-- Секция Обслуживание -->
-        <section class="content-section" id="serviceSection">
-            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
-            <h2 class="content-title" id="serviceTitle">Обслуживание</h2>
-            <div class="content-text" id="serviceContent"></div>
-        </section>
-
-        <!-- Секция Ремонт -->
-        <section class="content-section" id="repairSection">
-            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
-            <h2 class="content-title" id="repairTitle">Ремонт</h2>
-            <div class="content-text" id="repairContent"></div>
-        </section>
-
-        <!-- Секция Информация -->
-        <section class="content-section" id="infoSection">
-            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
-            <h2 class="content-title" id="infoTitle">Информация</h2>
-            <div class="content-text" id="infoContent"></div>
-        </section>
-
-        <!-- Секция Электрика -->
-        <section class="content-section" id="electricSection">
-            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
-            <h2 class="content-title" id="electricTitle">Электрика</h2>
-            <div class="content-text" id="electricContent"></div>
-        </section>
-
+        <!-- ТРЕТЬЯ СЕКЦИЯ -->
         <section class="section" id="thirdSection">
-            <h1>Дополнительно</h1>
-            <p>Скоро здесь появятся калькуляторы и полезные инструменты.</p>
+            <h1>Третья секция</h1>
+            <p>Ты долистал!</p>
         </section>
-
-        <!-- Кнопка наверх -->
-        <button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
 
     </div>
 
-    <style>
-        .actions-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 20px 50px;
-        }
-
-        .actions-section.show {
-            display: flex;
-            animation: fadeSlideIn 0.35s ease;
-        }
-
-        .actions-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
-            margin-bottom: 35px;
-            margin-top: 10px;
-        }
-
-        .action-btn {
-            width: 100%;
-            max-width: 500px;
-            padding: 20px 0;
-            background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-align: center;
-            font-family: inherit;
-            margin-bottom: 14px;
-            letter-spacing: 0.4px;
-        }
-
-        .action-btn:last-child {
-            margin-bottom: 0;
-        }
-
-        .action-btn:active {
-            background: rgba(255,107,0,0.25);
-            border-color: rgba(255,107,0,0.5);
-            transform: scale(0.97);
-        }
-
-        .content-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px 70px;
-            text-align: left;
-        }
-
-        .content-section.show {
-            display: flex;
-            animation: fadeSlideIn 0.3s ease;
-        }
-
-        .back-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
-            padding: 12px 26px;
-            cursor: pointer;
-            margin-bottom: 35px;
-            align-self: flex-start;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .back-btn:active {
-            background: rgba(255,255,255,0.18);
-            transform: scale(0.96);
-        }
-
-        .content-title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
-            margin-bottom: 30px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .content-text {
-            width: 100%;
-            max-width: 600px;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 28px 22px;
-            color: white;
-            font-size: 1rem;
-            line-height: 1.85;
-            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
-        }
-
-        .content-text h3 {
-            font-size: 1.3rem;
-            margin-top: 28px;
-            margin-bottom: 12px;
-            color: #ff8c42;
-            border-bottom: 1px solid rgba(255,255,255,0.12);
-            padding-bottom: 6px;
-            letter-spacing: 0.3px;
-        }
-
-        .content-text h3:first-child {
-            margin-top: 0;
-        }
-
-        .content-text ul {
-            padding-left: 22px;
-            margin-bottom: 8px;
-        }
-
-        .content-text ul li {
-            margin-bottom: 7px;
-        }
-
-        .content-text p {
-            margin-bottom: 10px;
-        }
-
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,107,0,0.85);
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 99;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-        }
-
-        .scroll-top-btn.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .scroll-top-btn:active {
-            transform: scale(0.9);
-            background: rgba(255,107,0,1);
-        }
-    </style>
-
     <script>
-        var currentModel = '';
-
         function showCategories() {
             var wrapper = document.getElementById('categoryWrapper');
             var btn = document.getElementById('mainBtn');
@@ -586,11 +398,6 @@
             var arrow = document.getElementById('arrowDown');
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var infoSec = document.getElementById('infoSection');
-            var electric = document.getElementById('electricSection');
-            var third = document.getElementById('thirdSection');
 
             if (btn.classList.contains('selected')) {
                 btn.classList.remove('selected');
@@ -598,14 +405,8 @@
                 info.classList.remove('show');
                 arrow.classList.remove('show');
                 actions.classList.remove('show');
-                service.classList.remove('show');
-                repair.classList.remove('show');
-                infoSec.classList.remove('show');
-                electric.classList.remove('show');
                 second.style.display = 'flex';
-                third.style.display = 'flex';
                 wrapper.classList.remove('show');
-                currentModel = '';
                 return;
             }
 
@@ -636,457 +437,37 @@
             var arrow = document.getElementById('arrowDown');
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var infoSec = document.getElementById('infoSection');
-            var electric = document.getElementById('electricSection');
-            var third = document.getElementById('thirdSection');
 
             var allLists = document.querySelectorAll('.model-list');
-            allLists.forEach(function(list) { list.classList.remove('show'); });
+            allLists.forEach(function(list) {
+                list.classList.remove('show');
+            });
+
             var allCatBtns = document.querySelectorAll('.cat-btn');
-            allCatBtns.forEach(function(catBtn) { catBtn.classList.remove('active'); });
+            allCatBtns.forEach(function(catBtn) {
+                catBtn.classList.remove('active');
+            });
 
             wrapper.classList.remove('show');
             info.classList.remove('show');
+
             btn.textContent = modelName;
             btn.classList.add('selected');
-            currentModel = modelName;
+
             arrow.classList.add('show');
-            service.classList.remove('show');
-            repair.classList.remove('show');
-            infoSec.classList.remove('show');
-            electric.classList.remove('show');
+
             second.style.display = 'none';
-            third.style.display = 'flex';
             actions.classList.add('show');
         }
-
-        function hideAllContent() {
-            document.getElementById('serviceSection').classList.remove('show');
-            document.getElementById('repairSection').classList.remove('show');
-            document.getElementById('infoSection').classList.remove('show');
-            document.getElementById('electricSection').classList.remove('show');
-        }
-
-        function showService() {
-            var actions = document.getElementById('actionsSection');
-            var second = document.getElementById('secondSection');
-            var third = document.getElementById('thirdSection');
-            hideAllContent();
-            actions.classList.remove('show');
-            second.style.display = 'none';
-            third.style.display = 'none';
-            var data = serviceData[currentModel];
-            if (data) {
-                document.getElementById('serviceTitle').textContent = data.title;
-                document.getElementById('serviceContent').innerHTML = data.html;
-            }
-            document.getElementById('serviceSection').classList.add('show');
-        }
-
-        function showRepair() {
-            var actions = document.getElementById('actionsSection');
-            var second = document.getElementById('secondSection');
-            var third = document.getElementById('thirdSection');
-            hideAllContent();
-            actions.classList.remove('show');
-            second.style.display = 'none';
-            third.style.display = 'none';
-            var data = repairData[currentModel];
-            if (data) {
-                document.getElementById('repairTitle').textContent = data.title;
-                document.getElementById('repairContent').innerHTML = data.html;
-            }
-            document.getElementById('repairSection').classList.add('show');
-        }
-
-        function showInfo() {
-            var actions = document.getElementById('actionsSection');
-            var second = document.getElementById('secondSection');
-            var third = document.getElementById('thirdSection');
-            hideAllContent();
-            actions.classList.remove('show');
-            second.style.display = 'none';
-            third.style.display = 'none';
-            var data = infoData[currentModel];
-            if (data) {
-                document.getElementById('infoTitle').textContent = data.title;
-                document.getElementById('infoContent').innerHTML = data.html;
-            }
-            document.getElementById('infoSection').classList.add('show');
-        }
-
-        function showElectric() {
-            var actions = document.getElementById('actionsSection');
-            var second = document.getElementById('secondSection');
-            var third = document.getElementById('thirdSection');
-            hideAllContent();
-            actions.classList.remove('show');
-            second.style.display = 'none';
-            third.style.display = 'none';
-            var data = electricData[currentModel];
-            if (data) {
-                document.getElementById('electricTitle').textContent = data.title;
-                document.getElementById('electricContent').innerHTML = data.html;
-            }
-            document.getElementById('electricSection').classList.add('show');
-        }
-
-        function goBackToActions() {
-            hideAllContent();
-            document.getElementById('actionsSection').classList.add('show');
-            document.getElementById('thirdSection').style.display = 'flex';
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        window.addEventListener('scroll', function() {
-            var btn = document.getElementById('scrollTopBtn');
-            if (window.scrollY > 400) {
-                btn.classList.add('show');
-            } else {
-                btn.classList.remove('show');
-            }
-        });
 
         document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
         document.addEventListener('gesturechange', function(e) { e.preventDefault(); });
         document.addEventListener('gestureend', function(e) { e.preventDefault(); });
         document.addEventListener('touchmove', function(e) {
-            if (e.touches.length > 1) { e.preventDefault(); }
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
         }, { passive: false });
-        var serviceData = {
-            'Alpha': {
-                title: 'Обслуживание Alpha',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40 (полусинтетика)</li><li>Объём: 0,8 л</li><li>Замена каждые 1000 км или раз в месяц</li><li>Прогреть двигатель 3-5 мин перед сливом</li><li>Не переливать выше максимума на щупе</li><li>Сливная пробка — момент затяжки 20 Нм</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазывать каждые 500 км или после дождя</li><li>Провисание: 15-20 мм (по центру нижней ветви)</li><li>Очистка керосином, затем цепная смазка</li><li>Износ звёзд проверять каждые 3000 км</li><li>При износе — менять цепь и звёзды комплектом</li></ul>' +
-                      '<h3>Тормозные колодки</h3><ul><li>Проверка износа каждые 2000 км</li><li>Замена при толщине фрикциона менее 2 мм</li><li>Скрип при торможении — признак износа</li><li>Продувка суппорта сжатым воздухом</li><li>Направляющие суппорта смазывать медной пастой</li></ul>' +
-                      '<h3>Свеча зажигания</h3><ul><li>Тип: NGK BR8HS (аналог Bosch WR8AC)</li><li>Зазор между электродами: 0,6-0,7 мм</li><li>Замена каждые 4000 км или раз в сезон</li><li>Цвет изолятора: кофейный — норма</li><li>Белый налёт — бедная смесь, чёрный нагар — богатая</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Поролоновый: чистка каждые 2000 км</li><li>Мыть в бензине или спецсредстве, сушить</li><li>Пропитка маслом для воздушных фильтров</li><li>На пыльных дорогах — чистка вдвое чаще</li></ul>' +
-                      '<h3>Общие советы</h3><p>Проверяйте все крепления каждые 500 км. Вибрация ослабляет болты. Протяжка резьбовых соединений динамометрическим ключом продлевает жизнь раме.</p>'
-            },
-            'Delta': {
-                title: 'Обслуживание Delta',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40 полусинтетика</li><li>Объём: 0,9 л (со сменой фильтра)</li><li>Замена каждые 800 км</li><li>Использовать мерный стакан для точности</li><li>Сливная пробка с магнитом — очищать от стружки</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазка каждые 400 км (чаще в сырую погоду)</li><li>Провисание: 10-15 мм</li><li>Не перетягивать — нагрузка на подшипники</li><li>Проверка бокового люфта каждые 1000 км</li></ul>' +
-                      '<h3>Тормозные колодки</h3><ul><li>Проверка каждые 1500 км</li><li>Минимальная толщина фрикциона: 1,5 мм</li><li>При замене — очистить поршень суппорта</li></ul>' +
-                      '<h3>Свеча зажигания</h3><ul><li>Тип: NGK BR7HS</li><li>Зазор: 0,6 мм</li><li>Замена каждые 3500 км</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Бумажный — только замена, не мыть</li><li>Замена каждые 3000 км или раз в сезон</li></ul>' +
-                      '<h3>Тросы управления</h3><ul><li>Смазывать трос газа и сцепления раз в 2000 км</li><li>Проверять на перегибы и заломы оболочки</li><li>Свободный ход рычага сцепления: 2-3 мм</li></ul>'
-            },
-            'Orion': {
-                title: 'Обслуживание Orion',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 15W-50 минеральное</li><li>Объём: 1,0 л</li><li>Замена каждые 1200 км</li><li>Сливная пробка магнитная — контроль стружки</li><li>При появлении металлической пыли — проверить двигатель</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазывать цепной смазкой каждые 600 км</li><li>Провисание: 20-25 мм</li><li>Очистка щёткой с керосином перед смазкой</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR9ES</li><li>Зазор: 0,7 мм</li><li>Замена каждые 5000 км</li><li>Проверка искры: синяя — хорошо, жёлтая — слабая</li></ul>' +
-                      '<h3>Колодки</h3><ul><li>Проверка каждые 2000 км</li><li>Замена при толщине 1,5 мм и менее</li></ul>' +
-                      '<h3>Подшипники колёс</h3><ul><li>Проверка люфта каждые 3000 км</li><li>Смазка литолом-24 при замене</li><li>При гуле — немедленная замена</li></ul>' +
-                      '<h3>Вилка</h3><ul><li>Масло в пере: 200 мл (SAE 10W)</li><li>Замена каждые 6000 км</li><li>Проверка сальников на потёки</li></ul>'
-            },
-            'Racer': {
-                title: 'Обслуживание Racer',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 0,9 л</li><li>Замена каждые 1000 км</li><li>Слив на горячем двигателе</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазка каждые 500 км</li><li>Провисание: 15 мм</li><li>Проверка замка цепи на надёжность</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Проверка уровня тормозной жидкости каждые 2000 км</li><li>Жидкость DOT-3 или DOT-4</li><li>Замена жидкости раз в год (гигроскопичность)</li><li>Прокачка: сначала дальний штуцер от бачка</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR8HS</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Карбюратор</h3><ul><li>Чистка жиклёров каждые 3000 км</li><li>Проверка поплавковой камеры на осадок</li><li>Регулировка холостого хода: 1400±100 об/мин</li></ul>' +
-                      '<h3>Аккумулятор</h3><ul><li>Напряжение покоя: 12,5-13 В</li><li>Клеммы смазывать литолом от окисления</li><li>Проверка уровня электролита (если обслуживаемый)</li></ul>'
-            },
-            'Regulmoto': {
-                title: 'Обслуживание Regulmoto',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-30</li><li>Объём: 0,75 л</li><li>Замена каждые 900 км</li><li>Контроль за цветом слитого масла</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Провисание: 15 мм</li><li>Смазывать каждые 500 км</li><li>Контроль износа по растяжению</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR7HS</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Тормозная система</h3><ul><li>Продувка барабанов каждые 2000 км</li><li>Проверка шлангов на трещины и вздутия</li><li>Рычаг тормоза: свободный ход 5-8 мм</li></ul>' +
-                      '<h3>Глушитель</h3><ul><li>Проверка на прогар раз в 3000 км</li><li>Очистка от нагара при падении тяги</li></ul>' +
-                      '<h3>Общие советы</h3><p>Спицы колёс: проверка натяжения каждые 1000 км. Ослабленные спицы ведут к деформации обода и биению.</p>'
-            },
-            'Minsk': {
-                title: 'Обслуживание Minsk',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 0,8 л</li><li>Замена каждые 1000 км</li><li>Сетка масляного насоса — чистка раз в 3000 км</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазка каждые 500 км</li><li>Провисание: 15-20 мм</li><li>Цепь 428-го шага, 128 звеньев</li></ul>' +
-                      '<h3>Колодки</h3><ul><li>Замена при толщине менее 2 мм</li><li>Передние и задние — одинаковые</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>А17В (отечественная) или NGK B7HS</li><li>Зазор: 0,5-0,6 мм</li><li>Калильное число: 7</li></ul>' +
-                      '<h3>Генератор</h3><ul><li>Напряжение зарядки: 13,5-14,5 В на 3000 об/мин</li><li>Чистка контактов реле-регулятора раз в сезон</li></ul>' +
-                      '<h3>Рама</h3><p>Сварные швы осматривать на трещины. Ржавчину зачищать наждачной бумагой и красить эмалью.</p>'
-            },
-            'Honda Dio': {
-                title: 'Обслуживание Honda Dio',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-30 (рекомендовано Honda)</li><li>Объём: 0,7 л</li><li>Замена каждые 2000 км</li><li>Сливной болт — момент 15 Нм</li></ul>' +
-                      '<h3>Вариатор</h3><ul><li>Чистка каждые 4000 км</li><li>Ролики: проверка на износ (должны быть круглые)</li><li>Смазка направляющих тонким слоем</li><li>Втулка вариатора — без люфта</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK CR7HSA</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Тормозная жидкость</h3><ul><li>DOT-3, замена раз в год</li><li>Прокачка: передний контур — правый штуцер первый</li></ul>' +
-                      '<h3>Ремень вариатора</h3><ul><li>Замена каждые 8000-10000 км</li><li>Ширина нового ремня: 18 мм</li><li>Минимальная ширина: 16,5 мм</li><li>Трещины на зубьях — немедленная замена</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Поролоновый: мыть и пропитывать каждые 3000 км</li><li>В пыльных условиях — каждые 1500 км</li></ul>'
-            },
-            'Honda Tact': {
-                title: 'Обслуживание Honda Tact',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-30</li><li>Объём: 0,65 л</li><li>Замена каждые 1500 км</li><li>Контроль: не доливать выше нормы</li></ul>' +
-                      '<h3>Ремень вариатора</h3><ul><li>Замена каждые 8000 км</li><li>Признак износа: трещины на внутренней стороне</li><li>Ширина ремня: мин 15,5 мм</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR6HSA</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Барабанные: чистка и продувка каждые 3000 км</li><li>Накладки: мин толщина 1,5 мм</li><li>Рычаг тормоза: смазка оси раз в сезон</li></ul>' +
-                      '<h3>Масло в редукторе</h3><ul><li>Объём: 0,12 л (трансмиссионное 80W-90)</li><li>Замена раз в 5000 км</li></ul>' +
-                      '<h3>Топливная система</h3><ul><li>Чистка карбюратора раз в сезон</li><li>Топливный фильтр: замена каждые 4000 км</li><li>Бензин: АИ-92, не ниже</li></ul>'
-            }
-        };
-                    'Yamaha Jog': {
-                title: 'Обслуживание Yamaha Jog',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 0,8 л</li><li>Замена каждые 2000 км</li><li>Фильтр масляный — замена через раз</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Замена каждые 4000 км</li><li>В пыльных условиях — каждые 2000 км</li><li>Проверка на разрывы при каждой замене масла</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BPR7HS</li><li>Зазор: 0,7 мм</li><li>Момент затяжки: 12 Нм</li></ul>' +
-                      '<h3>Вариатор</h3><ul><li>Чистка каждые 5000 км</li><li>Ролики: 15x12 мм, вес 6,5 г (оригинал)</li><li>Износ роликов: грани — замена</li><li>Проверка щёк вариатора на выработку</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Передний диск: колодки каждые 2000 км</li><li>Задний барабан: чистка каждые 3000 км</li><li>Трос тормоза: смазка раз в сезон</li></ul>' +
-                      '<h3>Трансмиссионное масло</h3><ul><li>Объём редуктора: 0,1 л</li><li>Тип: SAE 80W-90</li><li>Замена каждые 6000 км</li></ul>'
-            },
-            'Suzuki Let\'s': {
-                title: 'Обслуживание Suzuki Let\'s',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 0,7 л</li><li>Замена каждые 2500 км</li><li>Сливная пробка: медная шайба — замена при деформации</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Проверка каждые 3000 км</li><li>Жидкость DOT-4 (не смешивать с DOT-3)</li><li>Замена жидкости раз в 2 года</li><li>Прокачка: сначала левый суппорт</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK CR6HSA</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Ремень</h3><ul><li>Замена каждые 10000 км</li><li>Ширина нового: 18,5 мм</li><li>Минимум: 17 мм</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Бумажный: замена каждые 4000 км</li><li>Не продувать сжатым воздухом — порвётся</li></ul>' +
-                      '<h3>Фары</h3><p>Регулировка каждые 5000 км. Лампы: 12V 35/35W (цоколь HS1). Замена только в перчатках — не касаться колбы пальцами.</p>'
-            },
-            'Yamaha Aerox': {
-                title: 'Обслуживание Yamaha Aerox',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40 синтетика (JASO MA)</li><li>Объём: 0,9 л</li><li>Замена каждые 3000 км</li><li>Датчик уровня масла — проверка работы</li></ul>' +
-                      '<h3>Охлаждающая жидкость</h3><ul><li>Тип: антифриз G12+ (зелёный)</li><li>Замена раз в 2 года или 20000 км</li><li>Уровень в бачке: между MIN и MAX</li><li>Проверка патрубков на трещины</li></ul>' +
-                      '<h3>Ремень вариатора</h3><ul><li>Замена каждые 10000 км</li><li>Ширина нового: 22 мм</li><li>Минимальная: 20 мм</li><li>При обрыве — проверить вариатор на повреждения</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK CR8E (аналог Denso U24ESR-N)</li><li>Зазор: 0,7 мм</li><li>Момент затяжки: 13 Нм</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Передние и задние дисковые</li><li>Колодки: проверка каждые 3000 км</li><li>Тормозная жидкость DOT-4</li><li>Диски: мин толщина 3,5 мм</li></ul>' +
-                      '<h3>Топливная система</h3><ul><li>Инжектор: чистка ультразвуком каждые 10000 км</li><li>Бензин: только АИ-95</li><li>Топливный фильтр: замена каждые 6000 км</li></ul>'
-            },
-            'Kayo': {
-                title: 'Обслуживание Kayo',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40 для 4-тактных (JASO MA2)</li><li>Объём: 0,9 л</li><li>Замена каждые 10 моточасов</li><li>Слив через нижнюю пробку (магнитную)</li><li>Контроль стружки — при обилии металла к механику</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазка после каждой мойки и каждые 3 моточаса</li><li>Провисание: 25-30 мм (на подставке)</li><li>Смазка: O/X-ring совместимая</li><li>Очистка: спецсредство, не керосин (портит кольца)</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Чистка каждые 5 моточасов</li><li>Поролоновый: мыть в тёплой воде с мылом</li><li>Сушить естественно, не феном</li><li>Пропитка: спецмасло для фильтров</li><li>Замена фильтра раз в сезон</li></ul>' +
-                      '<h3>Колодки</h3><ul><li>Проверка перед каждым выездом</li><li>Замена при остатке 1 мм фрикциона</li><li>Передние и задние — одинаковые</li></ul>' +
-                      '<h3>Подвеска</h3><ul><li>Сальники вилки: проверка на течь после каждой мойки</li><li>Регулировка амортизатора по весу райдера</li><li>Масло в вилке: 330 мл (SAE 5W) на перо</li><li>Замена масла в вилке раз в 40 моточасов</li></ul>' +
-                      '<h3>Рама и общее</h3><p>Осмотр рамы на трещины после падений. Болты двигателя: момент 25 Нм. Спицы: проверка каждые 10 моточасов.</p>'
-            },
-            'BSE': {
-                title: 'Обслуживание BSE',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 15W-50 (минеральное или полусинтетика)</li><li>Объём: 1,0 л</li><li>Замена каждые 8 моточасов</li><li>Сливная пробка: магнитная, чистить</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Натяжение: 20-25 мм</li><li>Смазывать каждые 3 моточаса</li><li>Замок цепи: проверка фиксации</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR9ES</li><li>Зазор: 0,7 мм</li><li>Замена каждые 30 моточасов</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Чистка каждые 5 моточасов</li><li>Поролоновый: мыть и пропитывать</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Жидкость DOT-4</li><li>Прокачка при мягкой ручке</li><li>Колодки: мин 1 мм</li></ul>' +
-                      '<h3>Спицы и колёса</h3><p>Протяжка спиц каждые 10 моточасов. Ослабленные — риск восьмёрки. Балансировка после замены резины обязательна.</p>'
-            },
-            'Motoland': {
-                title: 'Обслуживание Motoland',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 0,85 л</li><li>Замена каждые 10 моточасов</li><li>Проверка уровня по щупу (не закручивая)</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазка каждые 3 выезда или 5 моточасов</li><li>Провисание: 25 мм</li><li>Звёзды: осмотр на износ зубьев</li></ul>' +
-                      '<h3>Фильтр воздушный</h3><ul><li>Чистка каждые 5 моточасов</li><li>Замена раз в сезон</li><li>Поролон: мыть, сушить, пропитывать</li></ul>' +
-                      '<h3>Колодки</h3><ul><li>Проверка каждые 15 моточасов</li><li>Замена при 1 мм</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR8HS</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Общее</h3><p>Протяжка болтов двигателя и рамы каждые 10 моточасов. Вибрация на холостых — проверить подушки двигателя.</p>'
-            },
-            'Irbis': {
-                title: 'Обслуживание Irbis',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 0,9 л</li><li>Замена каждые 1000 км</li><li>Слив: на горячую, 5 мин стекания</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Провисание: 15-20 мм</li><li>Смазка каждые 500 км</li><li>Тип цепи: 428, 128 звеньев</li></ul>' +
-                      '<h3>Колодки</h3><ul><li>Замена при толщине менее 2 мм</li><li>Проверка каждые 2000 км</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK B7HS</li><li>Зазор: 0,6 мм</li></ul>' +
-                      '<h3>Фильтр воздушный</h3><ul><li>Чистка каждые 2000 км</li><li>Бумажный — замена, не мыть</li></ul>' +
-                      '<h3>Общие советы</h3><p>Крепления глушителя проверять каждые 500 км. При дребезге — подтянуть хомуты. Смазка резьбовых соединений медной смазкой.</p>'
-            },
-            'Progasi': {
-                title: 'Обслуживание Progasi',
-                html: '<h3>Замена масла</h3><ul><li>Масло: 10W-40</li><li>Объём: 1,0 л</li><li>Замена каждые 8 моточасов</li><li>Сливная пробка: момент 20 Нм</li></ul>' +
-                      '<h3>Цепь</h3><ul><li>Смазка каждые 2 выезда</li><li>Провисание: 25-30 мм</li><li>Смазка: цепная в баллончике</li></ul>' +
-                      '<h3>Свеча</h3><ul><li>NGK BR8HS</li><li>Зазор: 0,6 мм</li><li>Замена каждые 25 моточасов</li></ul>' +
-                      '<h3>Тормоза</h3><ul><li>Проверка перед каждым выездом</li><li>Гидравлика: DOT-4</li><li>Колодки: мин 1 мм</li></ul>' +
-                      '<h3>Воздушный фильтр</h3><ul><li>Чистка каждые 3 моточаса</li><li>Поролоновый: полный цикл обслуживания</li></ul>' +
-                      '<h3>Подвеска</h3><p>Регулировка под вес райдера. Сальники вилки: осмотр на течь. Рекомендуемая марка масла в вилку: Motul 5W.</p>'
-            }
-        };
-                var repairData = {
-            'Alpha': { title: 'Ремонт Alpha', html: '<h3>Двигатель</h3><ul><li>Компрессия: норма 8-10 атм</li><li>Регулировка клапанов: 0,05 мм впуск, 0,07 мм выпуск</li><li>Замена поршневой каждые 8000 км</li></ul><h3>Сцепление</h3><ul><li>Пакет дисков: 4 фрикционных, 3 стальных</li><li>Замена при пробуксовке</li></ul><h3>Коробка передач</h3><ul><li>Масло в КПП: 10W-40, 0,6 л</li><li>Замена каждые 4000 км</li></ul>' },
-            'Delta': { title: 'Ремонт Delta', html: '<h3>Двигатель</h3><ul><li>Компрессия: 9-11 атм</li><li>Клапаны: 0,04 мм впуск, 0,06 мм выпуск</li></ul><h3>Сцепление</h3><ul><li>Регулировка троса: свободный ход 3 мм</li></ul><h3>Выхлоп</h3><ul><li>Проверка на прогар каждые 5000 км</li></ul>' },
-            'Orion': { title: 'Ремонт Orion', html: '<h3>Двигатель</h3><ul><li>Компрессия: 10-12 атм</li><li>ЦПГ: диаметр поршня 52,4 мм</li></ul><h3>Сцепление</h3><ul><li>Масляное, диски в масляной ванне</li></ul><h3>КПП</h3><ul><li>Передач: 4</li><li>Схема: 1-N-2-3-4</li></ul>' },
-            'Racer': { title: 'Ремонт Racer', html: '<h3>Двигатель</h3><ul><li>Компрессия: 8-10 атм</li><li>ГРМ: цепь, натяжитель автоматический</li></ul><h3>Сцепление</h3><ul><li>Многодисковое в масле</li></ul><h3>Выхлопная система</h3><ul><li>Прокладка глушителя: замена при прогарах</li></ul>' },
-            'Regulmoto': { title: 'Ремонт Regulmoto', html: '<h3>Двигатель</h3><ul><li>Компрессия: 7-9 атм</li><li>Объём: 49,5 куб.см</li></ul><h3>КПП</h3><ul><li>Передач: 4</li></ul><h3>Рама</h3><ul><li>Сварные швы: проверка на трещины</li></ul>' },
-            'Minsk': { title: 'Ремонт Minsk', html: '<h3>Двигатель</h3><ul><li>Компрессия: 7-9 атм</li><li>Опережение зажигания: 2,5-3 мм до ВМТ</li></ul><h3>Сцепление</h3><ul><li>Регулировка винтом на крышке</li></ul><h3>Генератор</h3><ul><li>6V или 12V в зависимости от модели</li></ul>' },
-            'Honda Dio': { title: 'Ремонт Honda Dio', html: '<h3>Двигатель</h3><ul><li>Компрессия: 10-13 атм</li><li>Сапун: чистка каждые 4000 км</li></ul><h3>Вариатор</h3><ul><li>Замена щёк при выработке</li></ul><h3>Стартер</h3><ul><li>Бендикс: смазка раз в сезон</li></ul>' },
-            'Honda Tact': { title: 'Ремонт Honda Tact', html: '<h3>Двигатель</h3><ul><li>Компрессия: 9-11 атм</li><li>Прокладка ГБЦ: замена при течи</li></ul><h3>Вариатор</h3><ul><li>Проверка грузиков каждые 5000 км</li></ul><h3>Кикстартер</h3><ul><li>Смазка оси раз в сезон</li></ul>' },
-            'Yamaha Jog': { title: 'Ремонт Yamaha Jog', html: '<h3>Двигатель</h3><ul><li>Компрессия: 9-12 атм</li><li>Масляный насос: проверка подачи</li></ul><h3>Вариатор</h3><ul><li>Ролики: замена при появлении граней</li></ul><h3>Выхлоп</h3><ul><li>Чистка от нагара каждые 8000 км</li></ul>' },
-            'Suzuki Let\'s': { title: 'Ремонт Suzuki Let\'s', html: '<h3>Двигатель</h3><ul><li>Компрессия: 10-13 атм</li><li>Декомпрессор: проверка работы</li></ul><h3>Тормоза</h3><ul><li>Замена шлангов раз в 4 года</li></ul><h3>Электрика</h3><ul><li>Предохранитель: 10А</li></ul>' },
-            'Yamaha Aerox': { title: 'Ремонт Yamaha Aerox', html: '<h3>Двигатель</h3><ul><li>Компрессия: 11-14 атм</li><li>Датчик температуры ОЖ</li></ul><h3>Инжектор</h3><ul><li>Давление в рампе: 2,5 бар</li></ul><h3>Выхлоп</h3><ul><li>Катализатор: проверка каждые 15000 км</li></ul>' },
-            'Kayo': { title: 'Ремонт Kayo', html: '<h3>Двигатель</h3><ul><li>Компрессия: 10-13 атм</li><li>Зазоры клапанов: 0,05/0,07 мм</li><li>Замена поршневой каждые 40 моточасов</li></ul><h3>Сцепление</h3><ul><li>Масляное, 5 дисков</li><li>Замена масла в КПП: 0,6 л</li></ul><h3>Подвеска</h3><ul><li>Регулировка сжатия и отбоя</li></ul>' },
-            'BSE': { title: 'Ремонт BSE', html: '<h3>Двигатель</h3><ul><li>Компрессия: 9-11 атм</li><li>Цепь ГРМ: замена каждые 60 моточасов</li></ul><h3>Коробка</h3><ul><li>Масло: 0,7 л 10W-40</li></ul><h3>Рама</h3><ul><li>Усиление сварных швов при трещинах</li></ul>' },
-            'Motoland': { title: 'Ремонт Motoland', html: '<h3>Двигатель</h3><ul><li>Компрессия: 8-10 атм</li><li>Регулировка карбюратора: винт качества</li></ul><h3>Сцепление</h3><ul><li>Регулировка троса: люфт 3 мм</li></ul><h3>Тормоза</h3><ul><li>Прокачка: обратная, от штуцера</li></ul>' },
-            'Irbis': { title: 'Ремонт Irbis', html: '<h3>Двигатель</h3><ul><li>Компрессия: 8-10 атм</li><li>ГРМ: цепь с натяжителем</li></ul><h3>КПП</h3><ul><li>Схема: 1-N-2-3-4</li></ul><h3>Электрика</h3><ul><li>Генератор: проверка обмоток</li></ul>' },
-            'Progasi': { title: 'Ремонт Progasi', html: '<h3>Двигатель</h3><ul><li>Компрессия: 9-11 атм</li><li>Клапаны: регулировка каждые 20 моточасов</li></ul><h3>Сцепление</h3><ul><li>Гидравлика: прокачка при мягкости</li></ul><h3>Выхлоп</h3><ul><li>Глушитель: чистка от нагара</li></ul>' }
-        };
-
-        var infoData = {
-            'Alpha': { title: 'Информация Alpha', html: '<h3>Характеристики</h3><ul><li>Объём: 49,5 куб.см</li><li>Мощность: 3,5 л.с.</li><li>Макс. скорость: 55 км/ч</li><li>Бак: 5,5 л</li><li>Расход: 2,0 л/100 км</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-128</li><li>Звёзды: перед 14Т, зад 42Т</li><li>Свеча: NGK BR8HS</li></ul>' },
-            'Delta': { title: 'Информация Delta', html: '<h3>Характеристики</h3><ul><li>Объём: 49,9 куб.см</li><li>Мощность: 3,7 л.с.</li><li>Макс. скорость: 60 км/ч</li><li>Бак: 5,0 л</li></ul><h3>Запчасти</h3><ul><li>Цепь: 420-126</li><li>Свеча: NGK BR7HS</li></ul>' },
-            'Orion': { title: 'Информация Orion', html: '<h3>Характеристики</h3><ul><li>Объём: 72 куб.см</li><li>Мощность: 5,0 л.с.</li><li>Макс. скорость: 70 км/ч</li><li>Бак: 6,0 л</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-132</li><li>Свеча: NGK BR9ES</li></ul>' },
-            'Racer': { title: 'Информация Racer', html: '<h3>Характеристики</h3><ul><li>Объём: 49,5 куб.см</li><li>Мощность: 3,5 л.с.</li><li>Бак: 4,5 л</li></ul><h3>Запчасти</h3><ul><li>Цепь: 420</li><li>Колодки: универсальные 90 мм</li></ul>' },
-            'Regulmoto': { title: 'Информация Regulmoto', html: '<h3>Характеристики</h3><ul><li>Объём: 49,5 куб.см</li><li>Мощность: 3,2 л.с.</li><li>Макс. скорость: 50 км/ч</li></ul><h3>Запчасти</h3><ul><li>Свеча: NGK BR7HS</li><li>Тормозные накладки: 100 мм</li></ul>' },
-            'Minsk': { title: 'Информация Minsk', html: '<h3>Характеристики</h3><ul><li>Объём: 125 куб.см</li><li>Мощность: 9 л.с.</li><li>Макс. скорость: 95 км/ч</li><li>Бак: 11 л</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-128</li><li>Свеча: NGK B7HS</li></ul>' },
-            'Honda Dio': { title: 'Информация Honda Dio', html: '<h3>Характеристики</h3><ul><li>Объём: 49,9 куб.см</li><li>Мощность: 4,5 л.с.</li><li>Макс. скорость: 60 км/ч</li><li>Бак: 5,0 л</li></ul><h3>Запчасти</h3><ul><li>Ремень: 18x8,5 мм</li><li>Свеча: NGK CR7HSA</li></ul>' },
-            'Honda Tact': { title: 'Информация Honda Tact', html: '<h3>Характеристики</h3><ul><li>Объём: 49,9 куб.см</li><li>Мощность: 4,2 л.с.</li><li>Макс. скорость: 55 км/ч</li></ul><h3>Запчасти</h3><ul><li>Ремень: 17,5x8 мм</li><li>Свеча: NGK BR6HSA</li></ul>' },
-            'Yamaha Jog': { title: 'Информация Yamaha Jog', html: '<h3>Характеристики</h3><ul><li>Объём: 49,9 куб.см</li><li>Мощность: 5,0 л.с.</li><li>Макс. скорость: 65 км/ч</li><li>Бак: 5,5 л</li></ul><h3>Запчасти</h3><ul><li>Ролики: 15x12, 6,5 г</li><li>Свеча: NGK BPR7HS</li></ul>' },
-            'Suzuki Let\'s': { title: 'Информация Suzuki Let\'s', html: '<h3>Характеристики</h3><ul><li>Объём: 49,9 куб.см</li><li>Мощность: 4,8 л.с.</li><li>Макс. скорость: 60 км/ч</li></ul><h3>Запчасти</h3><ul><li>Ремень: 18x8 мм</li><li>Свеча: NGK CR6HSA</li></ul>' },
-            'Yamaha Aerox': { title: 'Информация Yamaha Aerox', html: '<h3>Характеристики</h3><ul><li>Объём: 155 куб.см</li><li>Мощность: 15 л.с.</li><li>Макс. скорость: 115 км/ч</li><li>Бак: 6,6 л</li></ul><h3>Запчасти</h3><ul><li>Ремень: 22x12 мм</li><li>Свеча: NGK CR8E</li></ul>' },
-            'Kayo': { title: 'Информация Kayo', html: '<h3>Характеристики</h3><ul><li>Объём: 125 куб.см</li><li>Мощность: 8,5 л.с.</li><li>Макс. скорость: 80 км/ч</li><li>Бак: 3,5 л</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-128</li><li>Звёзды: 13Т/49Т</li><li>Свеча: NGK BR8HS</li></ul>' },
-            'BSE': { title: 'Информация BSE', html: '<h3>Характеристики</h3><ul><li>Объём: 125 куб.см</li><li>Мощность: 8,0 л.с.</li><li>Макс. скорость: 75 км/ч</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428</li><li>Свеча: NGK BR9ES</li></ul>' },
-            'Motoland': { title: 'Информация Motoland', html: '<h3>Характеристики</h3><ul><li>Объём: 125 куб.см</li><li>Мощность: 8,2 л.с.</li><li>Макс. скорость: 78 км/ч</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-130</li><li>Свеча: NGK BR8HS</li></ul>' },
-            'Irbis': { title: 'Информация Irbis', html: '<h3>Характеристики</h3><ul><li>Объём: 125 куб.см</li><li>Мощность: 8,0 л.с.</li><li>Макс. скорость: 80 км/ч</li><li>Бак: 5,0 л</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-128</li><li>Свеча: NGK B7HS</li></ul>' },
-            'Progasi': { title: 'Информация Progasi', html: '<h3>Характеристики</h3><ul><li>Объём: 125 куб.см</li><li>Мощность: 8,5 л.с.</li><li>Макс. скорость: 82 км/ч</li></ul><h3>Запчасти</h3><ul><li>Цепь: 428-132</li><li>Свеча: NGK BR8HS</li></ul>' }
-        };
-                var electricData = {
-            'Alpha': {
-                title: 'Электрика Alpha',
-                html: '<h3>Генератор</h3><ul><li>Тип: маховичный, 12V</li><li>Мощность: 60 Вт</li><li>Сопротивление обмотки: 0,8-1,2 Ом</li></ul>' +
-                      '<h3>Коммутатор</h3><ul><li>Тип: CDI (DC)</li><li>Напряжение питания: 12V</li></ul>' +
-                      '<h3>Катушка зажигания</h3><ul><li>Сопротивление первички: 0,5-0,8 Ом</li><li>Сопротивление вторички: 5-8 кОм</li></ul>' +
-                      '<h3>Проводка</h3><ul><li>Предохранитель: 10А</li><li>Масса на раму</li><li>Проверка контактов раз в сезон</li></ul>' +
-                      '<h3>Аккумулятор</h3><ul><li>Тип: 12V 4Ah</li><li>Зарядка: 13,5-14,5V на холостых</li></ul>' +
-                      '<h3>Освещение</h3><ul><li>Фара: 12V 35/35W</li><li>Стоп-сигнал: 12V 21/5W</li><li>Поворотники: 12V 10W</li></ul>'
-            },
-            'Delta': {
-                title: 'Электрика Delta',
-                html: '<h3>Генератор</h3><ul><li>12V, 55 Вт</li><li>Обмотка зарядки: 0,6-1,0 Ом</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC-тип</li><li>Импульсный датчик: 100-150 Ом</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Первичка: 0,4-0,7 Ом</li><li>Вторичка: 6-9 кОм</li></ul>' +
-                      '<h3>Предохранители</h3><ul><li>Главный: 10А</li><li>Свет: 5А</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 3,5Ah</li></ul>' +
-                      '<h3>Лампы</h3><ul><li>Фара: HS1 35W</li><li>Габарит: T10 5W</li></ul>'
-            },
-            'Orion': {
-                title: 'Электрика Orion',
-                html: '<h3>Генератор</h3><ul><li>12V, 70 Вт</li><li>Трёхфазный</li></ul>' +
-                      '<h3>Реле-регулятор</h3><ul><li>Напряжение стабилизации: 14,0-14,8V</li></ul>' +
-                      '<h3>CDI</h3><ul><li>DC, 5-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>С выносным проводом</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 5Ah</li></ul>' +
-                      '<h3>Стартер</h3><ul><li>Мощность: 200 Вт</li><li>Ток холостого хода: 15А</li></ul>'
-            },
-            'Racer': {
-                title: 'Электрика Racer',
-                html: '<h3>Генератор</h3><ul><li>12V, 50 Вт</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC, 4-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Первичка: 0,6 Ом</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 4Ah (необслуживаемый)</li></ul>' +
-                      '<h3>Проводка</h3><ul><li>Разъёмы: проверка на окисление</li></ul>' +
-                      '<h3>Фара</h3><ul><li>LED-опция: замена на 25W</li></ul>'
-            },
-            'Regulmoto': {
-                title: 'Электрика Regulmoto',
-                html: '<h3>Генератор</h3><ul><li>6V (старые модели)</li><li>12V (новые)</li></ul>' +
-                      '<h3>Коммутатор</h3><ul><li>Механическое зажигание (старые)</li><li>CDI (новые)</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Универсальная 6/12V</li></ul>' +
-                      '<h3>Предохранитель</h3><ul><li>8А (стеклянный)</li></ul>' +
-                      '<h3>Освещение</h3><ul><li>Лампы накаливания</li></ul>'
-            },
-            'Minsk': {
-                title: 'Электрика Minsk',
-                html: '<h3>Генератор</h3><ul><li>6V или 12V (по году)</li><li>Мощность: 45-65 Вт</li></ul>' +
-                      '<h3>Реле-регулятор</h3><ul><li>Механическое (стар.) / электронное (нов.)</li></ul>' +
-                      '<h3>Зажигание</h3><ul><li>Контактное (6V) / CDI (12V)</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Высоковольтная 6/12V</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>6V 7Ah или 12V 5Ah</li></ul>' +
-                      '<h3>Проводка</h3><p>Слабое место — разъёмы под баком. Проверять на оплавление.</p>'
-            },
-            'Honda Dio': {
-                title: 'Электрика Honda Dio',
-                html: '<h3>Генератор</h3><ul><li>12V, 80 Вт (трёхфазный)</li><li>Обмотка зарядки: 0,3-0,6 Ом</li></ul>' +
-                      '<h3>CDI</h3><ul><li>DC-CDI, 6-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Встроенная в свечной колпачок</li><li>Сопротивление: 5-10 кОм</li></ul>' +
-                      '<h3>Реле-регулятор</h3><ul><li>14,0-14,5V стабилизация</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 5Ah (YTX5L-BS)</li></ul>' +
-                      '<h3>Стартер</h3><ul><li>Щёточный, 250 Вт</li><li>Бендикс: смазка раз в сезон</li></ul>'
-            },
-            'Honda Tact': {
-                title: 'Электрика Honda Tact',
-                html: '<h3>Генератор</h3><ul><li>12V, 70 Вт</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC-CDI, 5-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Сопротивление: 0,5-0,8 / 5-8 кОм</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 4Ah</li></ul>' +
-                      '<h3>Поворотники</h3><ul><li>Реле поворотов: 12V 10W x2 + 3W</li></ul>' +
-                      '<h3>Замок зажигания</h3><p>Контакты: проверка на подгорание. Смазка графиткой.</p>'
-            },
-            'Yamaha Jog': {
-                title: 'Электрика Yamaha Jog',
-                html: '<h3>Генератор</h3><ul><li>12V, 90 Вт</li><li>Обмотка: 0,2-0,5 Ом</li></ul>' +
-                      '<h3>CDI</h3><ul><li>DC-CDI, 7-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Колпачок: 5 кОм сопротивление</li></ul>' +
-                      '<h3>Реле-регулятор</h3><ul><li>14,5V максимум</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>YTX5L-BS (12V 4Ah)</li></ul>' +
-                      '<h3>Приборка</h3><p>Подсветка: T5 1,7W. Спидометр: тросик, смазка раз в 2 года.</p>'
-            },
-            'Suzuki Let\'s': {
-                title: 'Электрика Suzuki Let\'s',
-                html: '<h3>Генератор</h3><ul><li>12V, 85 Вт</li></ul>' +
-                      '<h3>CDI</h3><ul><li>DC, с ограничителем оборотов</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Встроенная, 7 кОм</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 5Ah</li></ul>' +
-                      '<h3>Предохранители</h3><ul><li>Главный: 15А</li><li>Вентилятор: 5А</li></ul>' +
-                      '<h3>Датчики</h3><p>Датчик температуры: проверка при перегреве. Сопротивление: 2-3 кОм при 20°C.</p>'
-            },
-            'Yamaha Aerox': {
-                title: 'Электрика Yamaha Aerox',
-                html: '<h3>Генератор</h3><ul><li>12V, 160 Вт (трёхфазный)</li><li>Обмотка: 0,1-0,3 Ом</li></ul>' +
-                      '<h3>ЭБУ</h3><ul><li>Инжекторный блок управления</li><li>Диагностический разъём: 4-pin</li></ul>' +
-                      '<h3>Датчики</h3><ul><li>ДПКВ: индуктивный, 100-150 Ом</li><li>ДТОЖ: 2-3 кОм (20°C)</li><li>Датчик кислорода: лямбда-зонд</li></ul>' +
-                      '<h3>Форсунка</h3><ul><li>Сопротивление: 11-13 Ом</li><li>Давление в рампе: 2,5 бар</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 6Ah (YTX7A-BS)</li></ul>' +
-                      '<h3>Освещение</h3><p>Фара: LED (штатно). Регулировка: винт под фарой.</p>'
-            },
-            'Kayo': {
-                title: 'Электрика Kayo',
-                html: '<h3>Генератор</h3><ul><li>12V, 50 Вт (однофазный)</li><li>Обмотка зажигания: 300-500 Ом</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC, гоночный тип (без ограничителя)</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>Выносная, 0,6 Ом / 8 кОм</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>Отсутствует (кикстартер)</li></ul>' +
-                      '<h3>Проводка</h3><ul><li>Минимальная: зажигание + кил-свич</li></ul>' +
-                      '<h3>Фара</h3><p>Питание от генератора (переменка). Яркость зависит от оборотов.</p>'
-            },
-            'BSE': {
-                title: 'Электрика BSE',
-                html: '<h3>Генератор</h3><ul><li>12V, 55 Вт</li><li>Обмотка: 400-600 Ом</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC, 5-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>0,5 Ом / 7 кОм</li></ul>' +
-                      '<h3>Кил-свич</h3><ul><li>Нормально разомкнут</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>Нет (опция: 12V 2Ah для фары)</li></ul>' +
-                      '<h3>Заземление</h3><p>Масса двигателя — критична. Проверять контакт рама-двигатель.</p>'
-            },
-            'Motoland': {
-                title: 'Электрика Motoland',
-                html: '<h3>Генератор</h3><ul><li>12V, 50 Вт</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC, 4-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>0,7 Ом / 9 кОм</li></ul>' +
-                      '<h3>Проводка</h3><ul><li>Жгут: проверка на перетирание у руля</li></ul>' +
-                      '<h3>Свечной колпачок</h3><ul><li>5 кОм сопротивление</li></ul>' +
-                      '<h3>Кнопки</h3><p>Кил-свич и старт: чистка контактов раз в сезон.</p>'
-            },
-            'Irbis': {
-                title: 'Электрика Irbis',
-                html: '<h3>Генератор</h3><ul><li>12V, 60 Вт</li></ul>' +
-                      '<h3>CDI</h3><ul><li>DC, 6-контактный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>0,5 Ом / 6 кОм</li></ul>' +
-                      '<h3>Реле-регулятор</h3><ul><li>14,0-14,5V</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>12V 5Ah</li></ul>' +
-                      '<h3>Стартер</h3><p>Реле стартера: проверка щелчков. При отказе — замыкание отвёрткой (аварийно).</p>'
-            },
-            'Progasi': {
-                title: 'Электрика Progasi',
-                html: '<h3>Генератор</h3><ul><li>12V, 65 Вт</li><li>Обмотка: 350-550 Ом</li></ul>' +
-                      '<h3>CDI</h3><ul><li>AC, гоночный</li></ul>' +
-                      '<h3>Катушка</h3><ul><li>0,6 Ом / 8 кОм</li></ul>' +
-                      '<h3>АКБ</h3><ul><li>Опционально: 12V 3Ah</li></ul>' +
-                      '<h3>Проводка</h3><ul><li>Влагозащита разъёмов силиконом</li></ul>' +
-                      '<h3>Фара</h3><p>LED-прожектор: 18W. Питание через стабилизатор 12V.</p>'
-            }
-        };
     </script>
 
 </body>
