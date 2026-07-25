@@ -357,3 +357,404 @@
             <h1>Вторая секция</h1>
             <p>Тут твой текст.</p>
         </section>
+                <section class="actions-section" id="actionsSection">
+            <p class="actions-title">Что вас интересует?</p>
+            <button class="action-btn" onclick="showService()">🔧 Обслуживание</button>
+            <button class="action-btn" onclick="showRepair()">🔩 Ремонт</button>
+            <button class="action-btn" onclick="showInfo()">📋 Информация</button>
+            <button class="action-btn" onclick="showElectric()">⚡ Электрика</button>
+        </section>
+
+        <!-- Секция Обслуживание -->
+        <section class="content-section" id="serviceSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            <h2 class="content-title" id="serviceTitle">Обслуживание</h2>
+            <div class="content-text" id="serviceContent"></div>
+        </section>
+
+        <!-- Секция Ремонт -->
+        <section class="content-section" id="repairSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            <h2 class="content-title" id="repairTitle">Ремонт</h2>
+            <div class="content-text" id="repairContent"></div>
+        </section>
+
+        <!-- Секция Информация -->
+        <section class="content-section" id="infoSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            <h2 class="content-title" id="infoTitle">Информация</h2>
+            <div class="content-text" id="infoContent"></div>
+        </section>
+
+        <!-- Секция Электрика -->
+        <section class="content-section" id="electricSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            <h2 class="content-title" id="electricTitle">Электрика</h2>
+            <div class="content-text" id="electricContent"></div>
+        </section>
+
+        <section class="section" id="thirdSection">
+            <h1>Дополнительно</h1>
+            <p>Скоро здесь появятся калькуляторы и полезные инструменты.</p>
+        </section>
+
+        <!-- Кнопка наверх -->
+        <button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+    </div>
+
+    <style>
+        .actions-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 20px 50px;
+        }
+
+        .actions-section.show {
+            display: flex;
+            animation: fadeSlideIn 0.35s ease;
+        }
+
+        .actions-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            margin-bottom: 35px;
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px 0;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+            font-family: inherit;
+            margin-bottom: 14px;
+            letter-spacing: 0.4px;
+        }
+
+        .action-btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-btn:active {
+            background: rgba(255,107,0,0.25);
+            border-color: rgba(255,107,0,0.5);
+            transform: scale(0.97);
+        }
+
+        .content-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px 70px;
+            text-align: left;
+        }
+
+        .content-section.show {
+            display: flex;
+            animation: fadeSlideIn 0.3s ease;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 12px 26px;
+            cursor: pointer;
+            margin-bottom: 35px;
+            align-self: flex-start;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .back-btn:active {
+            background: rgba(255,255,255,0.18);
+            transform: scale(0.96);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .content-text {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 28px 22px;
+            color: white;
+            font-size: 1rem;
+            line-height: 1.85;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+        }
+
+        .content-text h3 {
+            font-size: 1.3rem;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            color: #ff8c42;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .content-text h3:first-child {
+            margin-top: 0;
+        }
+
+        .content-text ul {
+            padding-left: 22px;
+            margin-bottom: 8px;
+        }
+
+        .content-text ul li {
+            margin-bottom: 7px;
+        }
+
+        .content-text p {
+            margin-bottom: 10px;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,107,0,0.85);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .scroll-top-btn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top-btn:active {
+            transform: scale(0.9);
+            background: rgba(255,107,0,1);
+        }
+    </style>
+
+    <script>
+        var currentModel = '';
+
+        function showCategories() {
+            var wrapper = document.getElementById('categoryWrapper');
+            var btn = document.getElementById('mainBtn');
+            var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var infoSec = document.getElementById('infoSection');
+            var electric = document.getElementById('electricSection');
+            var third = document.getElementById('thirdSection');
+
+            if (btn.classList.contains('selected')) {
+                btn.classList.remove('selected');
+                btn.textContent = 'Выберите модель';
+                info.classList.remove('show');
+                arrow.classList.remove('show');
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                repair.classList.remove('show');
+                infoSec.classList.remove('show');
+                electric.classList.remove('show');
+                second.style.display = 'flex';
+                third.style.display = 'flex';
+                wrapper.classList.remove('show');
+                currentModel = '';
+                return;
+            }
+
+            if (wrapper.classList.contains('show')) {
+                wrapper.classList.remove('show');
+                info.classList.remove('show');
+            } else {
+                wrapper.classList.add('show');
+                info.classList.add('show');
+            }
+        }
+
+        function toggleList(id, btn) {
+            var list = document.getElementById(id);
+            if (list.classList.contains('show')) {
+                list.classList.remove('show');
+                btn.classList.remove('active');
+            } else {
+                list.classList.add('show');
+                btn.classList.add('active');
+            }
+        }
+
+        function selectModel(modelName) {
+            var btn = document.getElementById('mainBtn');
+            var wrapper = document.getElementById('categoryWrapper');
+            var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var infoSec = document.getElementById('infoSection');
+            var electric = document.getElementById('electricSection');
+            var third = document.getElementById('thirdSection');
+
+            var allLists = document.querySelectorAll('.model-list');
+            allLists.forEach(function(list) { list.classList.remove('show'); });
+            var allCatBtns = document.querySelectorAll('.cat-btn');
+            allCatBtns.forEach(function(catBtn) { catBtn.classList.remove('active'); });
+
+            wrapper.classList.remove('show');
+            info.classList.remove('show');
+            btn.textContent = modelName;
+            btn.classList.add('selected');
+            currentModel = modelName;
+            arrow.classList.add('show');
+            service.classList.remove('show');
+            repair.classList.remove('show');
+            infoSec.classList.remove('show');
+            electric.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'flex';
+            actions.classList.add('show');
+        }
+
+        function hideAllContent() {
+            document.getElementById('serviceSection').classList.remove('show');
+            document.getElementById('repairSection').classList.remove('show');
+            document.getElementById('infoSection').classList.remove('show');
+            document.getElementById('electricSection').classList.remove('show');
+        }
+
+        function showService() {
+            var actions = document.getElementById('actionsSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+            hideAllContent();
+            actions.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'none';
+            var data = serviceData[currentModel];
+            if (data) {
+                document.getElementById('serviceTitle').textContent = data.title;
+                document.getElementById('serviceContent').innerHTML = data.html;
+            }
+            document.getElementById('serviceSection').classList.add('show');
+        }
+
+        function showRepair() {
+            var actions = document.getElementById('actionsSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+            hideAllContent();
+            actions.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'none';
+            var data = repairData[currentModel];
+            if (data) {
+                document.getElementById('repairTitle').textContent = data.title;
+                document.getElementById('repairContent').innerHTML = data.html;
+            }
+            document.getElementById('repairSection').classList.add('show');
+        }
+
+        function showInfo() {
+            var actions = document.getElementById('actionsSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+            hideAllContent();
+            actions.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'none';
+            var data = infoData[currentModel];
+            if (data) {
+                document.getElementById('infoTitle').textContent = data.title;
+                document.getElementById('infoContent').innerHTML = data.html;
+            }
+            document.getElementById('infoSection').classList.add('show');
+        }
+
+        function showElectric() {
+            var actions = document.getElementById('actionsSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+            hideAllContent();
+            actions.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'none';
+            var data = electricData[currentModel];
+            if (data) {
+                document.getElementById('electricTitle').textContent = data.title;
+                document.getElementById('electricContent').innerHTML = data.html;
+            }
+            document.getElementById('electricSection').classList.add('show');
+        }
+
+        function goBackToActions() {
+            hideAllContent();
+            document.getElementById('actionsSection').classList.add('show');
+            document.getElementById('thirdSection').style.display = 'flex';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', function() {
+            var btn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 400) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+        document.addEventListener('gesturechange', function(e) { e.preventDefault(); });
+        document.addEventListener('gestureend', function(e) { e.preventDefault(); });
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) { e.preventDefault(); }
+        }, { passive: false });
