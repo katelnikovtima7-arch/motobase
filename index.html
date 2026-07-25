@@ -91,6 +91,9 @@
 
         .btn-wrapper {
             margin-top: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .btn {
@@ -113,6 +116,24 @@
         .btn.selected {
             background: #4caf50;
             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Стрелка вниз */
+        .arrow-down {
+            display: none;
+            font-size: 2rem;
+            margin-top: 15px;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
+        }
+
+        .arrow-down.show {
+            display: block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
         }
 
         .category-wrapper {
@@ -229,6 +250,41 @@
         .info-text.show {
             display: block;
         }
+
+        /* Кнопки действий (Обслуживание, Ремонт...) */
+        .actions-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 80px 20px 40px;
+        }
+
+        .actions-section.show {
+            display: flex;
+        }
+
+        .action-btn {
+            width: 100%;
+            max-width: 500px;
+            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        .action-btn:active {
+            background: rgba(255, 255, 255, 0.25);
+        }
     </style>
 </head>
 <body>
@@ -237,7 +293,8 @@
 
     <div class="content">
 
-        <section class="section">
+        <!-- ПЕРВАЯ СЕКЦИЯ -->
+        <section class="section" id="firstSection">
             <h1>Добро пожаловать!</h1>
             <p>Этот сайт создан для владельцев мопедов, питбайков, мотоциклов и другой мототехники.</p>
             <p class="welcome-text">Здесь вы найдете технические характеристики популярных моделей, инструкции по ремонту и обслуживанию, полезные калькуляторы, советы, руководства и другую важную информацию, собранную в одном месте.</p>
@@ -246,6 +303,7 @@
             
             <div class="btn-wrapper">
                 <a class="btn" id="mainBtn" onclick="showCategories()">Выберите модель</a>
+                <div class="arrow-down" id="arrowDown">↓</div>
             </div>
 
             <div class="category-wrapper" id="categoryWrapper">
@@ -297,12 +355,22 @@
             <p class="info-text" id="infoText">Не нашли свою модель? Скорее всего, она похожа на одну из представленных. Выберите наиболее подходящую.</p>
         </section>
 
-        <section class="section">
+        <!-- ВТОРАЯ СЕКЦИЯ (заменяется на кнопки действий) -->
+        <section class="section" id="secondSection">
             <h1>Вторая секция</h1>
             <p>Тут твой текст.</p>
         </section>
 
-        <section class="section">
+        <!-- СЕКЦИЯ С КНОПКАМИ ДЕЙСТВИЙ -->
+        <section class="actions-section" id="actionsSection">
+            <button class="action-btn">Обслуживание</button>
+            <button class="action-btn">Ремонт</button>
+            <button class="action-btn">Информация</button>
+            <button class="action-btn">Электрика</button>
+        </section>
+
+        <!-- ТРЕТЬЯ СЕКЦИЯ -->
+        <section class="section" id="thirdSection">
             <h1>Третья секция</h1>
             <p>Ты долистал!</p>
         </section>
@@ -314,13 +382,24 @@
             var wrapper = document.getElementById('categoryWrapper');
             var btn = document.getElementById('mainBtn');
             var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var third = document.getElementById('thirdSection');
 
+            // Если уже выбрана модель — сбрасываем всё
             if (btn.classList.contains('selected')) {
                 btn.classList.remove('selected');
                 btn.textContent = 'Выберите модель';
                 info.classList.remove('show');
+                arrow.classList.remove('show');
+                actions.classList.remove('show');
+                second.style.display = 'flex';
+                wrapper.classList.remove('show');
+                return;
             }
 
+            // Переключаем категории
             if (wrapper.classList.contains('show')) {
                 wrapper.classList.remove('show');
                 info.classList.remove('show');
@@ -345,22 +424,36 @@
             var btn = document.getElementById('mainBtn');
             var wrapper = document.getElementById('categoryWrapper');
             var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
 
+            // Закрываем все списки
             var allLists = document.querySelectorAll('.model-list');
             allLists.forEach(function(list) {
                 list.classList.remove('show');
             });
 
+            // Убираем активность со всех кнопок категорий
             var allCatBtns = document.querySelectorAll('.cat-btn');
             allCatBtns.forEach(function(catBtn) {
                 catBtn.classList.remove('active');
             });
 
+            // Скрываем обёртку с категориями
             wrapper.classList.remove('show');
             info.classList.remove('show');
 
+            // Меняем кнопку
             btn.textContent = modelName;
             btn.classList.add('selected');
+
+            // Показываем стрелку
+            arrow.classList.add('show');
+
+            // Скрываем "Вторая секция" и показываем кнопки действий
+            second.style.display = 'none';
+            actions.classList.add('show');
         }
 
         document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
