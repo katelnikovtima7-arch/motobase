@@ -118,11 +118,10 @@
             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
         }
 
-        /* Стрелка вниз */
         .arrow-down {
             display: none;
             font-size: 2rem;
-            margin-top: 15px;
+            margin-top: 10px;
             animation: bounce 2s infinite;
             opacity: 0.8;
         }
@@ -251,17 +250,23 @@
             display: block;
         }
 
-        /* Кнопки действий (Обслуживание, Ремонт...) */
+        /* Секция с кнопками действий */
         .actions-section {
             display: none;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            padding: 80px 20px 40px;
+            padding: 30px 20px 40px;
         }
 
         .actions-section.show {
             display: flex;
+        }
+
+        .actions-title {
+            font-size: 1.2rem;
+            text-shadow: 0 1px 6px black;
+            margin-bottom: 20px;
+            opacity: 0.9;
         }
 
         .action-btn {
@@ -280,6 +285,11 @@
             transition: background 0.2s;
             text-align: center;
             font-family: sans-serif;
+            margin-bottom: 12px;
+        }
+
+        .action-btn:last-child {
+            margin-bottom: 0;
         }
 
         .action-btn:active {
@@ -355,7 +365,7 @@
             <p class="info-text" id="infoText">Не нашли свою модель? Скорее всего, она похожа на одну из представленных. Выберите наиболее подходящую.</p>
         </section>
 
-        <!-- ВТОРАЯ СЕКЦИЯ (заменяется на кнопки действий) -->
+        <!-- ВТОРАЯ СЕКЦИЯ -->
         <section class="section" id="secondSection">
             <h1>Вторая секция</h1>
             <p>Тут твой текст.</p>
@@ -363,6 +373,7 @@
 
         <!-- СЕКЦИЯ С КНОПКАМИ ДЕЙСТВИЙ -->
         <section class="actions-section" id="actionsSection">
+            <p class="actions-title">Что вас интересует?</p>
             <button class="action-btn">Обслуживание</button>
             <button class="action-btn">Ремонт</button>
             <button class="action-btn">Информация</button>
@@ -385,9 +396,7 @@
             var arrow = document.getElementById('arrowDown');
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
-            var third = document.getElementById('thirdSection');
 
-            // Если уже выбрана модель — сбрасываем всё
             if (btn.classList.contains('selected')) {
                 btn.classList.remove('selected');
                 btn.textContent = 'Выберите модель';
@@ -399,7 +408,6 @@
                 return;
             }
 
-            // Переключаем категории
             if (wrapper.classList.contains('show')) {
                 wrapper.classList.remove('show');
                 info.classList.remove('show');
@@ -428,30 +436,24 @@
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
 
-            // Закрываем все списки
             var allLists = document.querySelectorAll('.model-list');
             allLists.forEach(function(list) {
                 list.classList.remove('show');
             });
 
-            // Убираем активность со всех кнопок категорий
             var allCatBtns = document.querySelectorAll('.cat-btn');
             allCatBtns.forEach(function(catBtn) {
                 catBtn.classList.remove('active');
             });
 
-            // Скрываем обёртку с категориями
             wrapper.classList.remove('show');
             info.classList.remove('show');
 
-            // Меняем кнопку
             btn.textContent = modelName;
             btn.classList.add('selected');
 
-            // Показываем стрелку
             arrow.classList.add('show');
 
-            // Скрываем "Вторая секция" и показываем кнопки действий
             second.style.display = 'none';
             actions.classList.add('show');
         }
