@@ -297,6 +297,86 @@
         .action-btn:active {
             background: rgba(255, 255, 255, 0.25);
         }
+
+        /* Секция с контентом обслуживания */
+        .content-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px 40px;
+            text-align: left;
+        }
+
+        .content-section.show {
+            display: flex;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            padding: 12px 24px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            align-self: flex-start;
+            font-family: sans-serif;
+        }
+
+        .back-btn:active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 2px 10px black;
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .content-text {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px 20px;
+            color: white;
+            font-size: 1rem;
+            line-height: 1.8;
+            text-shadow: 0 1px 4px black;
+        }
+
+        .content-text h3 {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #ff6b00;
+        }
+
+        .content-text h3:first-child {
+            margin-top: 0;
+        }
+
+        .content-text ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-text ul li {
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 <body>
@@ -376,10 +456,17 @@
         <!-- СЕКЦИЯ С КНОПКАМИ ДЕЙСТВИЙ -->
         <section class="actions-section" id="actionsSection">
             <p class="actions-title">Что вас интересует?</p>
-            <button class="action-btn">Обслуживание</button>
+            <button class="action-btn" onclick="showService()">Обслуживание</button>
             <button class="action-btn">Ремонт</button>
             <button class="action-btn">Информация</button>
             <button class="action-btn">Электрика</button>
+        </section>
+
+        <!-- СЕКЦИЯ С КОНТЕНТОМ ОБСЛУЖИВАНИЯ -->
+        <section class="content-section" id="serviceSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            <h2 class="content-title" id="serviceTitle">Обслуживание</h2>
+            <div class="content-text" id="serviceContent"></div>
         </section>
 
         <!-- ТРЕТЬЯ СЕКЦИЯ -->
@@ -391,6 +478,76 @@
     </div>
 
     <script>
+        // Данные обслуживания для всех моделей
+        var serviceData = {
+            'Alpha': {
+                title: 'Обслуживание Alpha',
+                html: '<h3>Замена масла</h3><ul><li>Используйте масло 10W-40</li><li>Объём: 0,8 л</li><li>Замена каждые 1000 км</li></ul><h3>Цепь</h3><ul><li>Смазывать каждые 500 км</li><li>Натяжение: провисание 15-20 мм</li></ul><h3>Тормозные колодки</h3><ul><li>Проверка каждые 2000 км</li><li>Замена при толщине менее 2 мм</li></ul><h3>Свеча зажигания</h3><ul><li>Тип: NGK BR8HS</li><li>Зазор: 0,6-0,7 мм</li></ul>'
+            },
+            'Delta': {
+                title: 'Обслуживание Delta',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,9 л</li><li>Замена каждые 800 км</li></ul><h3>Цепь</h3><ul><li>Смазка каждые 400 км</li><li>Провисание: 10-15 мм</li></ul><h3>Колодки</h3><ul><li>Проверка каждые 1500 км</li></ul><h3>Фильтр воздушный</h3><ul><li>Чистка каждые 2000 км</li></ul>'
+            },
+            'Orion': {
+                title: 'Обслуживание Orion',
+                html: '<h3>Замена масла</h3><ul><li>Масло 15W-50</li><li>Объём: 1,0 л</li><li>Замена каждые 1200 км</li></ul><h3>Цепь</h3><ul><li>Смазывать каждые 600 км</li><li>Провисание: 20-25 мм</li></ul><h3>Свеча</h3><ul><li>NGK BR9ES</li><li>Зазор: 0,7 мм</li></ul>'
+            },
+            'Racer': {
+                title: 'Обслуживание Racer',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,9 л</li><li>Замена каждые 1000 км</li></ul><h3>Цепь</h3><ul><li>Смазка каждые 500 км</li></ul><h3>Тормоза</h3><ul><li>Проверка уровня жидкости каждые 2000 км</li></ul>'
+            },
+            'Regulmoto': {
+                title: 'Обслуживание Regulmoto',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-30</li><li>Объём: 0,75 л</li><li>Замена каждые 900 км</li></ul><h3>Цепь</h3><ul><li>Провисание: 15 мм</li></ul><h3>Свеча</h3><ul><li>NGK BR7HS</li></ul>'
+            },
+            'Minsk': {
+                title: 'Обслуживание Minsk',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,8 л</li><li>Замена каждые 1000 км</li></ul><h3>Цепь</h3><ul><li>Смазка каждые 500 км</li><li>Провисание: 15-20 мм</li></ul><h3>Колодки</h3><ul><li>Замена при износе</li></ul>'
+            },
+            'Honda Dio': {
+                title: 'Обслуживание Honda Dio',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-30</li><li>Объём: 0,7 л</li><li>Замена каждые 2000 км</li></ul><h3>Вариатор</h3><ul><li>Чистка каждые 4000 км</li></ul><h3>Свеча</h3><ul><li>NGK CR7HSA</li></ul><h3>Тормозная жидкость</h3><ul><li>Замена раз в год</li></ul>'
+            },
+            'Honda Tact': {
+                title: 'Обслуживание Honda Tact',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-30</li><li>Объём: 0,65 л</li><li>Замена каждые 1500 км</li></ul><h3>Ремень вариатора</h3><ul><li>Замена каждые 8000 км</li></ul><h3>Свеча</h3><ul><li>NGK BR6HSA</li></ul>'
+            },
+            'Yamaha Jog': {
+                title: 'Обслуживание Yamaha Jog',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,8 л</li><li>Замена каждые 2000 км</li></ul><h3>Воздушный фильтр</h3><ul><li>Замена каждые 4000 км</li></ul><h3>Свеча</h3><ul><li>NGK BPR7HS</li></ul>'
+            },
+            'Suzuki Let\'s': {
+                title: 'Обслуживание Suzuki Let\'s',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,7 л</li><li>Замена каждые 2500 км</li></ul><h3>Тормоза</h3><ul><li>Проверка каждые 3000 км</li></ul><h3>Свеча</h3><ul><li>NGK CR6HSA</li></ul>'
+            },
+            'Yamaha Aerox': {
+                title: 'Обслуживание Yamaha Aerox',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,9 л</li><li>Замена каждые 3000 км</li></ul><h3>Охлаждающая жидкость</h3><ul><li>Замена раз в 2 года</li></ul><h3>Ремень вариатора</h3><ul><li>Замена каждые 10000 км</li></ul><h3>Свеча</h3><ul><li>NGK CR8E</li></ul>'
+            },
+            'Kayo': {
+                title: 'Обслуживание Kayo',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40 для 4-тактных</li><li>Объём: 0,9 л</li><li>Замена каждые 10 моточасов</li></ul><h3>Цепь</h3><ul><li>Смазка после каждой мойки</li><li>Провисание: 25-30 мм</li></ul><h3>Воздушный фильтр</h3><ul><li>Чистка каждые 5 моточасов</li></ul><h3>Колодки</h3><ul><li>Проверка перед каждым выездом</li></ul>'
+            },
+            'BSE': {
+                title: 'Обслуживание BSE',
+                html: '<h3>Замена масла</h3><ul><li>Масло 15W-50</li><li>Объём: 1,0 л</li><li>Замена каждые 8 моточасов</li></ul><h3>Цепь</h3><ul><li>Натяжение: 20-25 мм</li></ul><h3>Свеча</h3><ul><li>NGK BR9ES</li></ul>'
+            },
+            'Motoland': {
+                title: 'Обслуживание Motoland',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,85 л</li><li>Замена каждые 10 моточасов</li></ul><h3>Цепь</h3><ul><li>Смазка каждые 3 выезда</li></ul><h3>Фильтр</h3><ul><li>Чистка каждые 5 моточасов</li></ul>'
+            },
+            'Irbis': {
+                title: 'Обслуживание Irbis',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 0,9 л</li><li>Замена каждые 1000 км</li></ul><h3>Цепь</h3><ul><li>Провисание: 15-20 мм</li></ul><h3>Колодки</h3><ul><li>Замена при толщине менее 2 мм</li></ul>'
+            },
+            'Progasi': {
+                title: 'Обслуживание Progasi',
+                html: '<h3>Замена масла</h3><ul><li>Масло 10W-40</li><li>Объём: 1,0 л</li><li>Замена каждые 8 моточасов</li></ul><h3>Цепь</h3><ul><li>Смазка каждые 2 выезда</li></ul><h3>Свеча</h3><ul><li>NGK BR8HS</li></ul><h3>Тормоза</h3><ul><li>Проверка перед каждым выездом</li></ul>'
+            }
+        };
+
+        var currentModel = '';
+
         function showCategories() {
             var wrapper = document.getElementById('categoryWrapper');
             var btn = document.getElementById('mainBtn');
@@ -398,6 +555,8 @@
             var arrow = document.getElementById('arrowDown');
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var third = document.getElementById('thirdSection');
 
             if (btn.classList.contains('selected')) {
                 btn.classList.remove('selected');
@@ -405,8 +564,11 @@
                 info.classList.remove('show');
                 arrow.classList.remove('show');
                 actions.classList.remove('show');
+                service.classList.remove('show');
                 second.style.display = 'flex';
+                third.style.display = 'flex';
                 wrapper.classList.remove('show');
+                currentModel = '';
                 return;
             }
 
@@ -437,6 +599,8 @@
             var arrow = document.getElementById('arrowDown');
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var third = document.getElementById('thirdSection');
 
             var allLists = document.querySelectorAll('.model-list');
             allLists.forEach(function(list) {
@@ -453,10 +617,41 @@
 
             btn.textContent = modelName;
             btn.classList.add('selected');
+            currentModel = modelName;
 
             arrow.classList.add('show');
-
+            service.classList.remove('show');
             second.style.display = 'none';
+            third.style.display = 'flex';
+            actions.classList.add('show');
+        }
+
+        function showService() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            actions.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'none';
+
+            var data = serviceData[currentModel];
+            if (data) {
+                document.getElementById('serviceTitle').textContent = data.title;
+                document.getElementById('serviceContent').innerHTML = data.html;
+            }
+
+            service.classList.add('show');
+        }
+
+        function goBackToActions() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var third = document.getElementById('thirdSection');
+
+            service.classList.remove('show');
+            third.style.display = 'flex';
             actions.classList.add('show');
         }
 
