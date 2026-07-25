@@ -576,10 +576,17 @@
             var service = document.getElementById('serviceSection');
             var second = document.getElementById('secondSection');
             var third = document.getElementById('thirdSection');
-            actions.classList.remove('show');
-            second.style.display = 'none';
-            third.style.display = 'none';
-            service.classList.add('show');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                service.classList.add('show');
+            } else if (currentModel) {
+                alert('Обслуживание для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
         }
 
         function goBackToActions() {
