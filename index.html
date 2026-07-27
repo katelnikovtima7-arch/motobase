@@ -672,3 +672,259 @@
             </div>
             <img class="service-image" src="IMG_1492.webp" alt="Разъем проводки">
         </section>
+        <!-- СЕКЦИЯ ИНФОРМАЦИЯ -->
+        <section class="info-section" id="infoSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            
+            <img class="service-image" src="IMG_1493.webp" alt="Honda Dio сбоку">
+            <div class="service-text">
+                <h3>Информация о Honda Dio</h3>
+                <p>Honda Dio — один из самых популярных японских скутеров, который выпускается компанией Honda с конца 1980-х годов. Благодаря надежности, экономичности и простоте конструкции он получил широкое распространение во многих странах и до сих пор пользуется большим спросом.</p>
+            </div>
+            <div class="service-text">
+                <h3>Основные характеристики</h3>
+                <ul>
+                    <li><strong>Тип двигателя:</strong> одноцилиндровый, двухтактный или четырехтактный (в зависимости от модели).</li>
+                    <li><strong>Рабочий объем:</strong> 49 см³.</li>
+                    <li><strong>Охлаждение:</strong> воздушное.</li>
+                    <li><strong>Запуск двигателя:</strong> электростартер и кикстартер (на большинстве моделей).</li>
+                    <li><strong>Трансмиссия:</strong> автоматический вариатор (CVT).</li>
+                    <li><strong>Привод:</strong> ременной.</li>
+                </ul>
+            </div>
+            <img class="service-image" src="IMG_1494.jpeg" alt="Двигатель Honda Dio">
+            <div class="service-text">
+                <h3>Размеры</h3>
+                <ul>
+                    <li><strong>Длина:</strong> около 1670–1700 мм.</li>
+                    <li><strong>Ширина:</strong> около 630 мм.</li>
+                    <li><strong>Высота:</strong> около 990 мм.</li>
+                    <li><strong>Высота по седлу:</strong> примерно 700 мм.</li>
+                    <li><strong>Сухая масса:</strong> около 65–75 кг (зависит от модели).</li>
+                </ul>
+                <h3>Максимальная скорость</h3>
+                <p>Стандартная Honda Dio объемом 49 см³ обычно развивает около 55–60 км/ч. После снятия заводских ограничений и при исправном техническом состоянии некоторые версии способны разгоняться немного быстрее, однако скорость зависит от конкретной модификации, состояния двигателя и трансмиссии.</p>
+            </div>
+            <img class="service-image" src="IMG_1495.jpeg" alt="Спидометр Honda Dio">
+            <div class="service-text">
+                <h3>Расход топлива</h3>
+                <p>Средний расход составляет примерно 2–3 литра на 100 км, что делает Honda Dio одним из самых экономичных городских скутеров.</p>
+                <h3>Интересный факт</h3>
+                <p>Honda Dio ценится не только за надежность, но и за огромное количество совместимых запчастей. Многие детали подходят сразу к нескольким поколениям скутера, поэтому найти комплектующие и выполнить ремонт обычно проще, чем для менее распространенных моделей.</p>
+            </div>
+        </section>
+
+        <section class="section" id="thirdSection">
+            <h1>Третья секция</h1>
+            <p>Ты долистал!</p>
+        </section>
+
+    </div>
+
+    <script>
+        var currentModel = '';
+
+        function showCategories() {
+            var wrapper = document.getElementById('categoryWrapper');
+            var btn = document.getElementById('mainBtn');
+            var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var third = document.getElementById('thirdSection');
+
+            if (btn.classList.contains('selected')) {
+                btn.classList.remove('selected');
+                btn.textContent = 'Выберите модель';
+                info.classList.remove('show');
+                arrow.classList.remove('show');
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                repair.classList.remove('show');
+                electric.classList.remove('show');
+                infoSec.classList.remove('show');
+                second.style.display = 'flex';
+                third.style.display = 'flex';
+                wrapper.classList.remove('show');
+                currentModel = '';
+                return;
+            }
+
+            if (wrapper.classList.contains('show')) {
+                wrapper.classList.remove('show');
+                info.classList.remove('show');
+            } else {
+                wrapper.classList.add('show');
+                info.classList.add('show');
+            }
+        }
+
+        function toggleList(id, btn) {
+            var list = document.getElementById(id);
+            if (list.classList.contains('show')) {
+                list.classList.remove('show');
+                btn.classList.remove('active');
+            } else {
+                list.classList.add('show');
+                btn.classList.add('active');
+            }
+        }
+
+        function selectModel(modelName) {
+            var btn = document.getElementById('mainBtn');
+            var wrapper = document.getElementById('categoryWrapper');
+            var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var third = document.getElementById('thirdSection');
+
+            var allLists = document.querySelectorAll('.model-list');
+            allLists.forEach(function(list) { list.classList.remove('show'); });
+            var allCatBtns = document.querySelectorAll('.cat-btn');
+            allCatBtns.forEach(function(catBtn) { catBtn.classList.remove('active'); });
+
+            wrapper.classList.remove('show');
+            info.classList.remove('show');
+            btn.textContent = modelName;
+            btn.classList.add('selected');
+            currentModel = modelName;
+            arrow.classList.add('show');
+            service.classList.remove('show');
+            repair.classList.remove('show');
+            electric.classList.remove('show');
+            infoSec.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'flex';
+            actions.classList.add('show');
+        }
+
+        function showService() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                repair.classList.remove('show');
+                electric.classList.remove('show');
+                infoSec.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                service.classList.add('show');
+            } else if (currentModel) {
+                alert('Обслуживание для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function showRepair() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                electric.classList.remove('show');
+                infoSec.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                repair.classList.add('show');
+            } else if (currentModel) {
+                alert('Ремонт для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function showElectric() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                repair.classList.remove('show');
+                infoSec.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                electric.classList.add('show');
+            } else if (currentModel) {
+                alert('Электрика для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function showInfo() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                repair.classList.remove('show');
+                electric.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                infoSec.classList.add('show');
+            } else if (currentModel) {
+                alert('Информация для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function goBackToActions() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var infoSec = document.getElementById('infoSection');
+            var third = document.getElementById('thirdSection');
+            service.classList.remove('show');
+            repair.classList.remove('show');
+            electric.classList.remove('show');
+            infoSec.classList.remove('show');
+            third.style.display = 'flex';
+            actions.classList.add('show');
+        }
+
+        document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+        document.addEventListener('gesturechange', function(e) { e.preventDefault(); });
+        document.addEventListener('gestureend', function(e) { e.preventDefault(); });
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) { e.preventDefault(); }
+        }, { passive: false });
+    </script>
+
+</body>
+</html>
