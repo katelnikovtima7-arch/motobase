@@ -309,6 +309,18 @@
             display: flex;
         }
 
+        .repair-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px 60px;
+            text-align: left;
+        }
+
+        .repair-section.show {
+            display: flex;
+        }
+
         .back-btn {
             display: flex;
             align-items: center;
@@ -380,6 +392,15 @@
 
         .service-text p {
             margin-bottom: 10px;
+        }
+
+        .service-text ol {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .service-text ol li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
@@ -458,11 +479,12 @@
         <section class="actions-section" id="actionsSection">
             <p class="actions-title">Что вас интересует?</p>
             <button class="action-btn" onclick="showService()">Обслуживание</button>
-            <button class="action-btn" onclick="alert('Ремонт')">Ремонт</button>
+            <button class="action-btn" onclick="showRepair()">Ремонт</button>
             <button class="action-btn" onclick="alert('Информация')">Информация</button>
             <button class="action-btn" onclick="alert('Электрика')">Электрика</button>
         </section>
 
+        <!-- СЕКЦИЯ ОБСЛУЖИВАНИЕ -->
         <section class="service-section" id="serviceSection">
             <button class="back-btn" onclick="goBackToActions()">← Назад</button>
             
@@ -499,6 +521,118 @@
             </div>
         </section>
 
+        <!-- СЕКЦИЯ РЕМОНТ -->
+        <section class="repair-section" id="repairSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            
+            <img class="service-image" src="IMG_1479.webp" alt="Чистый скутер перед ремонтом">
+            <div class="service-text">
+                <h3>Ремонт Honda Dio</h3>
+                <p>Honda Dio — один из самых надежных скутеров, но даже он требует своевременного обслуживания и ремонта. Большинство неисправностей можно устранить самостоятельно, если знать устройство скутера и соблюдать последовательность действий.</p>
+                <p>Перед началом любых работ тщательно очистите скутер от грязи. Так вы сможете быстрее заметить повреждения, а грязь не попадет внутрь двигателя или других узлов во время разборки.</p>
+            </div>
+            <img class="service-image" src="IMG_1480.webp" alt="Первичный осмотр">
+            <div class="service-text">
+                <h3>Первичный осмотр</h3>
+                <p>Перед тем как разбирать двигатель или покупать новые детали, выполните простой осмотр.</p>
+                <p><strong>Проверьте:</strong></p>
+                <ul>
+                    <li>нет ли подтеков топлива или масла;</li>
+                    <li>надежно ли закреплены все разъемы;</li>
+                    <li>не повреждены ли топливные шланги;</li>
+                    <li>нет ли ослабленных болтов;</li>
+                    <li>цел ли воздушный фильтр;</li>
+                    <li>исправен ли аккумулятор.</li>
+                </ul>
+                <p>Очень часто проблема оказывается значительно проще, чем кажется на первый взгляд.</p>
+            </div>
+            <div class="service-text">
+                <h3>Если скутер не заводится</h3>
+                <p>Не начинайте сразу разбирать двигатель. Проверку лучше выполнять именно в такой последовательности:</p>
+                <p><strong>1. Проверьте наличие топлива</strong></p>
+                <p>Убедитесь, что в баке действительно есть бензин, а топливный кран работает исправно.</p>
+                <p><strong>2. Проверьте свечу</strong></p>
+                <p>Выкрутите свечу специальным свечным ключом. Осмотрите ее состояние.</p>
+                <ul>
+                    <li>Светло-коричневый цвет — норма.</li>
+                    <li>Черный нагар — богатая смесь.</li>
+                    <li>Белый налет — бедная смесь или перегрев.</li>
+                </ul>
+                <p>При необходимости очистите свечу или замените новой.</p>
+            </div>
+            <img class="service-image" src="IMG_1481.webp" alt="Выкрученная свеча">
+            <div class="service-text">
+                <p><strong>3. Проверьте искру</strong></p>
+                <p>Наденьте колпачок на свечу, приложите резьбовую часть свечи к металлической части двигателя и кратковременно прокрутите стартер.</p>
+                <p>Если искры нет, переходите к проверке катушки, коммутатора (CDI), генератора и проводки.</p>
+                <p>⚠️ Во время проверки держитесь только за изолированную часть свечного колпачка.</p>
+            </div>
+            <img class="service-image" src="IMG_1482.webp" alt="Проверка искры">
+            <div class="service-text">
+                <h3>Очистка воздушного фильтра</h3>
+                <p>Загрязненный воздушный фильтр значительно ухудшает работу двигателя.</p>
+                <ol>
+                    <li>Снимите крышку воздушного фильтра.</li>
+                    <li>Если установлен поролоновый фильтр:
+                        <ul>
+                            <li>промойте его;</li>
+                            <li>полностью высушите;</li>
+                            <li>слегка пропитайте специальным маслом для воздушных фильтров;</li>
+                            <li>установите обратно.</li>
+                        </ul>
+                    </li>
+                    <li>Если фильтр сильно поврежден, замените его новым.</li>
+                </ol>
+            </div>
+            <img class="service-image" src="IMG_1483.webp" alt="Воздушный фильтр">
+            <div class="service-text">
+                <h3>Проверка масла (для четырехтактных версий)</h3>
+                <p>Если у вас четырехтактная Honda Dio, регулярно проверяйте уровень масла.</p>
+                <ol>
+                    <li>Поставьте скутер на ровную поверхность.</li>
+                    <li>Выкрутите щуп, вытрите его, снова вставьте без закручивания и проверьте уровень.</li>
+                    <li>Если масла недостаточно — долейте рекомендованное производителем.</li>
+                </ol>
+            </div>
+            <img class="service-image" src="IMG_1484.webp" alt="Проверка уровня масла">
+            <div class="service-text">
+                <h3>Проверка вариатора</h3>
+                <p>Если двигатель работает нормально, но скутер плохо разгоняется, причиной может быть вариатор.</p>
+                <p><strong>Проверьте:</strong></p>
+                <ul>
+                    <li>состояние ремня;</li>
+                    <li>износ роликов;</li>
+                    <li>состояние направляющих;</li>
+                    <li>наличие трещин.</li>
+                </ul>
+                <p>Изношенные детали необходимо заменить.</p>
+            </div>
+            <img class="service-image" src="IMG_1485.webp" alt="Вариатор после снятия крышки">
+            <div class="service-text">
+                <h3>Проверка аккумулятора</h3>
+                <p>Если электростартер не работает или вращается слишком медленно, измерьте напряжение аккумулятора.</p>
+                <ul>
+                    <li>Очистите клеммы при наличии окислов.</li>
+                    <li>При необходимости зарядите аккумулятор.</li>
+                </ul>
+            </div>
+            <img class="service-image" src="IMG_1486.webp" alt="Аккумулятор">
+            <div class="service-text">
+                <h3>После завершения ремонта</h3>
+                <p>После любых работ обязательно убедитесь, что:</p>
+                <ul>
+                    <li>все болты затянуты;</li>
+                    <li>разъемы подключены;</li>
+                    <li>топливные шланги установлены правильно;</li>
+                    <li>отсутствуют утечки;</li>
+                    <li>двигатель запускается без посторонних шумов.</li>
+                </ul>
+                <p>После первого запуска дайте двигателю поработать несколько минут и еще раз осмотрите скутер.</p>
+                <h3>Полезный совет</h3>
+                <p>Не меняйте детали «наугад». Всегда сначала определяйте причину неисправности. Последовательная проверка поможет сэкономить деньги и время, а также избежать замены исправных компонентов.</p>
+            </div>
+        </section>
+
         <section class="section" id="thirdSection">
             <h1>Третья секция</h1>
             <p>Ты долистал!</p>
@@ -517,6 +651,7 @@
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
             var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
             var third = document.getElementById('thirdSection');
 
             if (btn.classList.contains('selected')) {
@@ -526,6 +661,7 @@
                 arrow.classList.remove('show');
                 actions.classList.remove('show');
                 service.classList.remove('show');
+                repair.classList.remove('show');
                 second.style.display = 'flex';
                 third.style.display = 'flex';
                 wrapper.classList.remove('show');
@@ -561,6 +697,7 @@
             var second = document.getElementById('secondSection');
             var actions = document.getElementById('actionsSection');
             var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
             var third = document.getElementById('thirdSection');
 
             var allLists = document.querySelectorAll('.model-list');
@@ -575,6 +712,7 @@
             currentModel = modelName;
             arrow.classList.add('show');
             service.classList.remove('show');
+            repair.classList.remove('show');
             second.style.display = 'none';
             third.style.display = 'flex';
             actions.classList.add('show');
@@ -583,11 +721,13 @@
         function showService() {
             var actions = document.getElementById('actionsSection');
             var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
             var second = document.getElementById('secondSection');
             var third = document.getElementById('thirdSection');
 
             if (currentModel === 'Honda Dio') {
                 actions.classList.remove('show');
+                repair.classList.remove('show');
                 second.style.display = 'none';
                 third.style.display = 'none';
                 service.classList.add('show');
@@ -598,11 +738,33 @@
             }
         }
 
+        function showRepair() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                repair.classList.add('show');
+            } else if (currentModel) {
+                alert('Ремонт для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
         function goBackToActions() {
             var actions = document.getElementById('actionsSection');
             var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
             var third = document.getElementById('thirdSection');
             service.classList.remove('show');
+            repair.classList.remove('show');
             third.style.display = 'flex';
             actions.classList.add('show');
         }
