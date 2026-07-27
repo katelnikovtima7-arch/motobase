@@ -297,7 +297,7 @@
             background: rgba(255, 255, 255, 0.25);
         }
 
-        .service-section {
+        .service-section, .repair-section, .electric-section {
             display: none;
             flex-direction: column;
             align-items: center;
@@ -305,19 +305,7 @@
             text-align: left;
         }
 
-        .service-section.show {
-            display: flex;
-        }
-
-        .repair-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px 60px;
-            text-align: left;
-        }
-
-        .repair-section.show {
+        .service-section.show, .repair-section.show, .electric-section.show {
             display: flex;
         }
 
@@ -481,13 +469,12 @@
             <button class="action-btn" onclick="showService()">Обслуживание</button>
             <button class="action-btn" onclick="showRepair()">Ремонт</button>
             <button class="action-btn" onclick="alert('Информация')">Информация</button>
-            <button class="action-btn" onclick="alert('Электрика')">Электрика</button>
+            <button class="action-btn" onclick="showElectric()">Электрика</button>
         </section>
 
         <!-- СЕКЦИЯ ОБСЛУЖИВАНИЕ -->
         <section class="service-section" id="serviceSection">
             <button class="back-btn" onclick="goBackToActions()">← Назад</button>
-            
             <img class="service-image" src="IMG_1455.webp" alt="Honda Dio">
             <div class="service-text">
                 <h3>Что проверять и менять</h3>
@@ -524,7 +511,6 @@
         <!-- СЕКЦИЯ РЕМОНТ -->
         <section class="repair-section" id="repairSection">
             <button class="back-btn" onclick="goBackToActions()">← Назад</button>
-            
             <img class="service-image" src="IMG_1479.webp" alt="Чистый скутер перед ремонтом">
             <div class="service-text">
                 <h3>Ремонт Honda Dio</h3>
@@ -565,7 +551,7 @@
                 <p><strong>3. Проверьте искру</strong></p>
                 <p>Наденьте колпачок на свечу, приложите резьбовую часть свечи к металлической части двигателя и кратковременно прокрутите стартер.</p>
                 <p>Если искры нет, переходите к проверке катушки, коммутатора (CDI), генератора и проводки.</p>
-                <p>⚠️ Во время проверки держитесь только за изолированную часть свечного колпачка.</p>
+                <p>Во время проверки держитесь только за изолированную часть свечного колпачка.</p>
             </div>
             <img class="service-image" src="IMG_1482.webp" alt="Проверка искры">
             <div class="service-text">
@@ -632,150 +618,3 @@
                 <p>Не меняйте детали «наугад». Всегда сначала определяйте причину неисправности. Последовательная проверка поможет сэкономить деньги и время, а также избежать замены исправных компонентов.</p>
             </div>
         </section>
-
-        <section class="section" id="thirdSection">
-            <h1>Третья секция</h1>
-            <p>Ты долистал!</p>
-        </section>
-
-    </div>
-
-    <script>
-        var currentModel = '';
-
-        function showCategories() {
-            var wrapper = document.getElementById('categoryWrapper');
-            var btn = document.getElementById('mainBtn');
-            var info = document.getElementById('infoText');
-            var arrow = document.getElementById('arrowDown');
-            var second = document.getElementById('secondSection');
-            var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var third = document.getElementById('thirdSection');
-
-            if (btn.classList.contains('selected')) {
-                btn.classList.remove('selected');
-                btn.textContent = 'Выберите модель';
-                info.classList.remove('show');
-                arrow.classList.remove('show');
-                actions.classList.remove('show');
-                service.classList.remove('show');
-                repair.classList.remove('show');
-                second.style.display = 'flex';
-                third.style.display = 'flex';
-                wrapper.classList.remove('show');
-                currentModel = '';
-                return;
-            }
-
-            if (wrapper.classList.contains('show')) {
-                wrapper.classList.remove('show');
-                info.classList.remove('show');
-            } else {
-                wrapper.classList.add('show');
-                info.classList.add('show');
-            }
-        }
-
-        function toggleList(id, btn) {
-            var list = document.getElementById(id);
-            if (list.classList.contains('show')) {
-                list.classList.remove('show');
-                btn.classList.remove('active');
-            } else {
-                list.classList.add('show');
-                btn.classList.add('active');
-            }
-        }
-
-        function selectModel(modelName) {
-            var btn = document.getElementById('mainBtn');
-            var wrapper = document.getElementById('categoryWrapper');
-            var info = document.getElementById('infoText');
-            var arrow = document.getElementById('arrowDown');
-            var second = document.getElementById('secondSection');
-            var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var third = document.getElementById('thirdSection');
-
-            var allLists = document.querySelectorAll('.model-list');
-            allLists.forEach(function(list) { list.classList.remove('show'); });
-            var allCatBtns = document.querySelectorAll('.cat-btn');
-            allCatBtns.forEach(function(catBtn) { catBtn.classList.remove('active'); });
-
-            wrapper.classList.remove('show');
-            info.classList.remove('show');
-            btn.textContent = modelName;
-            btn.classList.add('selected');
-            currentModel = modelName;
-            arrow.classList.add('show');
-            service.classList.remove('show');
-            repair.classList.remove('show');
-            second.style.display = 'none';
-            third.style.display = 'flex';
-            actions.classList.add('show');
-        }
-
-        function showService() {
-            var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var second = document.getElementById('secondSection');
-            var third = document.getElementById('thirdSection');
-
-            if (currentModel === 'Honda Dio') {
-                actions.classList.remove('show');
-                repair.classList.remove('show');
-                second.style.display = 'none';
-                third.style.display = 'none';
-                service.classList.add('show');
-            } else if (currentModel) {
-                alert('Обслуживание для модели ' + currentModel + ' появится позже');
-            } else {
-                alert('Сначала выберите модель');
-            }
-        }
-
-        function showRepair() {
-            var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var second = document.getElementById('secondSection');
-            var third = document.getElementById('thirdSection');
-
-            if (currentModel === 'Honda Dio') {
-                actions.classList.remove('show');
-                service.classList.remove('show');
-                second.style.display = 'none';
-                third.style.display = 'none';
-                repair.classList.add('show');
-            } else if (currentModel) {
-                alert('Ремонт для модели ' + currentModel + ' появится позже');
-            } else {
-                alert('Сначала выберите модель');
-            }
-        }
-
-        function goBackToActions() {
-            var actions = document.getElementById('actionsSection');
-            var service = document.getElementById('serviceSection');
-            var repair = document.getElementById('repairSection');
-            var third = document.getElementById('thirdSection');
-            service.classList.remove('show');
-            repair.classList.remove('show');
-            third.style.display = 'flex';
-            actions.classList.add('show');
-        }
-
-        document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
-        document.addEventListener('gesturechange', function(e) { e.preventDefault(); });
-        document.addEventListener('gestureend', function(e) { e.preventDefault(); });
-        document.addEventListener('touchmove', function(e) {
-            if (e.touches.length > 1) { e.preventDefault(); }
-        }, { passive: false });
-    </script>
-
-</body>
-</html>
