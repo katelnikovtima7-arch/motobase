@@ -618,3 +618,236 @@
                 <p>Не меняйте детали «наугад». Всегда сначала определяйте причину неисправности. Последовательная проверка поможет сэкономить деньги и время, а также избежать замены исправных компонентов.</p>
             </div>
         </section>
+        <!-- СЕКЦИЯ ЭЛЕКТРИКА -->
+        <section class="electric-section" id="electricSection">
+            <button class="back-btn" onclick="goBackToActions()">← Назад</button>
+            
+            <img class="service-image" src="IMG_1487.webp" alt="Основные элементы электрики">
+            <div class="service-text">
+                <h3>Электрика Honda Dio</h3>
+                <p>Электрооборудование Honda Dio достаточно надежно, однако большинство неисправностей связано с плохими контактами, окислением разъемов или выходом из строя отдельных компонентов. Перед заменой деталей всегда проверяйте проводку и соединения — часто проблема решается простой очисткой контактов.</p>
+            </div>
+            <div class="service-text">
+                <h3>Аккумулятор</h3>
+                <p>Если электростартер крутит медленно или совсем не работает, сначала проверьте аккумулятор.</p>
+                <p>Осмотрите клеммы, очистите их от окислов и убедитесь, что они надежно затянуты. Если аккумулятор долго не использовался, зарядите его перед дальнейшей диагностикой.</p>
+            </div>
+            <img class="service-image" src="IMG_1488.jpeg" alt="Аккумулятор">
+            <div class="service-text">
+                <h3>Проверка свечи и искры</h3>
+                <p>Если двигатель не запускается, выкрутите свечу и проверьте наличие искры.</p>
+                <p>Наденьте свечной колпачок на свечу, приложите резьбовую часть свечи к металлической части двигателя и кратковременно прокрутите стартер или кикстартер.</p>
+                <p>Если искры нет, последовательно проверьте:</p>
+                <ul>
+                    <li>свечу;</li>
+                    <li>свечной колпачок;</li>
+                    <li>высоковольтный провод;</li>
+                    <li>катушку зажигания;</li>
+                    <li>коммутатор (CDI).</li>
+                </ul>
+            </div>
+            <img class="service-image" src="IMG_1490.webp" alt="Проверка искры">
+            <div class="service-text">
+                <h3>Предохранитель</h3>
+                <p>Если полностью пропало питание, не работают приборы или стартер, первым делом проверьте предохранитель.</p>
+                <p>Извлеките его и осмотрите перемычку внутри корпуса. Если она перегорела, замените предохранитель на новый с таким же номиналом.</p>
+            </div>
+            <img class="service-image" src="IMG_1491.jpeg" alt="Предохранитель">
+            <div class="service-text">
+                <h3>Освещение</h3>
+                <p>Периодически проверяйте работу:</p>
+                <ul>
+                    <li>ближнего света;</li>
+                    <li>дальнего света;</li>
+                    <li>стоп-сигнала;</li>
+                    <li>указателей поворота;</li>
+                    <li>звукового сигнала.</li>
+                </ul>
+                <p>Если лампа не работает, сначала проверьте саму лампу и контакты, а затем проводку.</p>
+            </div>
+            <div class="service-text">
+                <h3>Разъемы и проводка</h3>
+                <p>Осмотрите основные разъемы на наличие влаги, грязи и следов окисления.</p>
+                <p>При необходимости очистите контакты специальным очистителем и надежно соедините разъемы. Поврежденную изоляцию проводов следует восстановить или заменить провод.</p>
+            </div>
+            <img class="service-image" src="IMG_1492.webp" alt="Разъем проводки">
+        </section>
+
+        <section class="section" id="thirdSection">
+            <h1>Третья секция</h1>
+            <p>Ты долистал!</p>
+        </section>
+
+    </div>
+
+    <script>
+        var currentModel = '';
+
+        function showCategories() {
+            var wrapper = document.getElementById('categoryWrapper');
+            var btn = document.getElementById('mainBtn');
+            var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var third = document.getElementById('thirdSection');
+
+            if (btn.classList.contains('selected')) {
+                btn.classList.remove('selected');
+                btn.textContent = 'Выберите модель';
+                info.classList.remove('show');
+                arrow.classList.remove('show');
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                repair.classList.remove('show');
+                electric.classList.remove('show');
+                second.style.display = 'flex';
+                third.style.display = 'flex';
+                wrapper.classList.remove('show');
+                currentModel = '';
+                return;
+            }
+
+            if (wrapper.classList.contains('show')) {
+                wrapper.classList.remove('show');
+                info.classList.remove('show');
+            } else {
+                wrapper.classList.add('show');
+                info.classList.add('show');
+            }
+        }
+
+        function toggleList(id, btn) {
+            var list = document.getElementById(id);
+            if (list.classList.contains('show')) {
+                list.classList.remove('show');
+                btn.classList.remove('active');
+            } else {
+                list.classList.add('show');
+                btn.classList.add('active');
+            }
+        }
+
+        function selectModel(modelName) {
+            var btn = document.getElementById('mainBtn');
+            var wrapper = document.getElementById('categoryWrapper');
+            var info = document.getElementById('infoText');
+            var arrow = document.getElementById('arrowDown');
+            var second = document.getElementById('secondSection');
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var third = document.getElementById('thirdSection');
+
+            var allLists = document.querySelectorAll('.model-list');
+            allLists.forEach(function(list) { list.classList.remove('show'); });
+            var allCatBtns = document.querySelectorAll('.cat-btn');
+            allCatBtns.forEach(function(catBtn) { catBtn.classList.remove('active'); });
+
+            wrapper.classList.remove('show');
+            info.classList.remove('show');
+            btn.textContent = modelName;
+            btn.classList.add('selected');
+            currentModel = modelName;
+            arrow.classList.add('show');
+            service.classList.remove('show');
+            repair.classList.remove('show');
+            electric.classList.remove('show');
+            second.style.display = 'none';
+            third.style.display = 'flex';
+            actions.classList.add('show');
+        }
+
+        function showService() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                repair.classList.remove('show');
+                electric.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                service.classList.add('show');
+            } else if (currentModel) {
+                alert('Обслуживание для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function showRepair() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                electric.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                repair.classList.add('show');
+            } else if (currentModel) {
+                alert('Ремонт для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function showElectric() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var second = document.getElementById('secondSection');
+            var third = document.getElementById('thirdSection');
+
+            if (currentModel === 'Honda Dio') {
+                actions.classList.remove('show');
+                service.classList.remove('show');
+                repair.classList.remove('show');
+                second.style.display = 'none';
+                third.style.display = 'none';
+                electric.classList.add('show');
+            } else if (currentModel) {
+                alert('Электрика для модели ' + currentModel + ' появится позже');
+            } else {
+                alert('Сначала выберите модель');
+            }
+        }
+
+        function goBackToActions() {
+            var actions = document.getElementById('actionsSection');
+            var service = document.getElementById('serviceSection');
+            var repair = document.getElementById('repairSection');
+            var electric = document.getElementById('electricSection');
+            var third = document.getElementById('thirdSection');
+            service.classList.remove('show');
+            repair.classList.remove('show');
+            electric.classList.remove('show');
+            third.style.display = 'flex';
+            actions.classList.add('show');
+        }
+
+        document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+        document.addEventListener('gesturechange', function(e) { e.preventDefault(); });
+        document.addEventListener('gestureend', function(e) { e.preventDefault(); });
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) { e.preventDefault(); }
+        }, { passive: false });
+    </script>
+
+</body>
+</html>
